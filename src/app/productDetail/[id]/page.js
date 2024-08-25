@@ -21,6 +21,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
+import useCart from "@/components/hooks/useCart";
 
 const ProductDetail = () => {
   const { user } = useContext(AuthContext);
@@ -31,6 +32,7 @@ const ProductDetail = () => {
   const [replyText, setReplyText] = useState("");
   const [product] = useProduct();
   const [review, refetch] = useReview();
+  const [cart] = useCart();
 
   const selectedProduct = product?.find((product) => product._id === id);
 
@@ -65,29 +67,47 @@ const ProductDetail = () => {
   };
 
   const handleOrder = (item) => {
-    const cartItem = {
-      productId: item._id,
-      email: user.email,
-      name: item.name,
-      category: item.category,
-      image: item.image,
-      price: parseFloat(item.price),
-      brand: item.brand,
-      type: item.type,
-      details: item.details,
-    };
+    // Check if the item is already in the cart
+    const isInCart = cart.some(
+      (cartItem) =>
+        cartItem.productId === id && cartItem.email === user.email
+    );
 
-    axiosPublic.post("/cart", cartItem).then((res) => {
-      if (res.data.insertedId) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "This item is added to the cart",
-          showConfirmButton: false,
-          timer: 1000,
-        });
-      }
-    });
+    if (isInCart) {
+      // If the item is already in the cart, show an error message
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "This item is already added to the cart",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    } else {
+      // If the item is not in the cart, proceed to add it
+      const cartItem = {
+        productId: item._id,
+        email: user.email,
+        name: item.name,
+        category: item.category,
+        image: item.image,
+        price: parseFloat(item.price),
+        brand: item.brand,
+        type: item.type,
+        details: item.details,
+      };
+
+      axiosPublic.post("/cart", cartItem).then((res) => {
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "This item is added to the cart",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+        }
+      });
+    }
   };
 
   const selectedReview = review.filter(
@@ -269,10 +289,7 @@ const ProductDetail = () => {
               ))}
             </div>
           </div>
-          <button
-            type="submit"
-            className="buttons transition duration-300"
-          >
+          <button type="submit" className="buttons transition duration-300">
             Submit Review
           </button>
         </form>
