@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#725523] text-white py-10 px-5 md:px-20">
+    <footer className="bg-[#725523] text-white py-10 px-5 md:px-20 z-20 relative">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="flex flex-col items-center md:items-start">
           <h2 className="text-3xl font-bold">UniShop</h2>

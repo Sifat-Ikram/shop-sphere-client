@@ -2,11 +2,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import sign from "../../assets/sign/sign.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "@/components/provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
-  const location = useLoc();
-  const navigate = useNavigate();
+  const { signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,11 +15,11 @@ const SignIn = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    logIn(email, password)
+    signIn(email, password)
       .then((res) => {
         console.log(res.user);
-        navigate(location?.state ? location.state : "/");
-        setSuccess("");
+        Swal.fire("You signed up successfully!");
+        setSuccess("sign In successful!");
       })
       .catch((err) => {
         console.error(err.message);
