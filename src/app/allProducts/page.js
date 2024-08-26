@@ -195,13 +195,13 @@ const AllProducts = () => {
 
         {/* Product Grid */}
         <div
-          className={`flex-1 p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${
+          className={`flex-1 p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 gap-4 ${
             isSidebarFixed ? "md:ml-[25%]" : ""
           }`}
         >
           {paginatedProducts.map((item) => (
             <Link key={item._id} href={`/productDetail/${item._id}`}>
-              <div className="relative rounded-xl overflow-hidden w-80 h-[380px] bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <div className="relative rounded-xl overflow-hidden w-auto lg:h-[380px] h-[400px] py-5 bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -209,14 +209,14 @@ const AllProducts = () => {
                   width={200}
                   className="object-cover w-full h-48 transition-transform duration-300 hover:scale-105"
                 />
-                <div className="p-5 flex flex-col gap-3 z-10 relative">
+                <div className="p-5 flex flex-col z-10 relative">
                   <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-[#624108]">
                     {item.name}
                   </h1>
                   <h2 className="text-sm md:text-base lg:text-lg text-gray-600">
                     {item.category}
                   </h2>
-                  <div className="flex items-center justify-between mt-3">
+                  <div className="lg:flex items-center justify-between mt-3">
                     <p className="text-xl font-semibold text-[#a67c00]">
                       ${item.price}
                     </p>
@@ -240,15 +240,15 @@ const AllProducts = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex justify-center gap-20 mt-5 lg:ml-80">
+      <div className="flex justify-center items-center lg:gap-20 md:gap-10 gap-2 lg:ml-80">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
-          className="btn buttons hover:bg-[#624108] mr-2"
+          className="btn bg-[#624108] text-white hover:bg-[#624108] mr-2"
         >
           Previous
         </button>
-        <span className="text-lg">
+        <span className="lg:text-lg sm:text-base text-xs">
           Page {currentPage} of {totalPages}
         </span>
         <button
@@ -256,7 +256,7 @@ const AllProducts = () => {
             setCurrentPage((prev) => Math.min(prev + 1, totalPages))
           }
           disabled={currentPage === totalPages}
-          className="btn buttons hover:bg-[#624108] ml-2"
+          className="btn bg-[#624108] text-white hover:bg-[#624108] ml-2"
         >
           Next
         </button>

@@ -69,8 +69,7 @@ const ProductDetail = () => {
   const handleOrder = (item) => {
     // Check if the item is already in the cart
     const isInCart = cart.some(
-      (cartItem) =>
-        cartItem.productId === id && cartItem.email === user.email
+      (cartItem) => cartItem.productId === id && cartItem.email === user.email
     );
 
     if (isInCart) {
@@ -94,6 +93,7 @@ const ProductDetail = () => {
         brand: item.brand,
         type: item.type,
         details: item.details,
+        numberItem: 1,
       };
 
       axiosPublic.post("/cart", cartItem).then((res) => {

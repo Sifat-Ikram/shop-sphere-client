@@ -23,8 +23,8 @@ const Navbar = () => {
       <li>
         <Link
           href="/"
-          className={`text-white font-semibold hover:bg-[#624108] ${
-            activeSegment === null ? "bg-[#624108] text-white" : ""
+          className={`font-semibold hover:bg-[#624108] ${
+            activeSegment === null ? "bg-white text-[#624108]" : "text-white"
           }`}
         >
           Home
@@ -33,28 +33,36 @@ const Navbar = () => {
       <li>
         <Link
           href="/allProducts"
-          className={`text-white font-semibold hover:bg-[#624108] ${
-            activeSegment === "allProducts" ? "bg-[#624108] text-white" : ""
+          className={`font-semibold hover:bg-[#624108] ${
+            activeSegment === "allProducts"
+              ? "bg-white text-[#624108]"
+              : "text-white"
           }`}
         >
           Products
         </Link>
       </li>
       <li>
-        <Link
-          href="/shop"
-          className={`text-white font-semibold hover:bg-[#624108] ${
-            activeSegment === "shop" ? "bg-[#624108] text-white" : ""
-          }`}
-        >
-          Shop
-        </Link>
+        {user && (
+          <>
+            <Link
+              href="/shop"
+              className={`font-semibold hover:bg-[#624108] ${
+                activeSegment === "shop"
+                  ? "bg-white text-[#624108]"
+                  : "text-white"
+              }`}
+            >
+              Shop
+            </Link>
+          </>
+        )}
       </li>
       <li>
         <Link
           href="/about"
-          className={`text-white font-semibold hover:bg-[#624108] ${
-            activeSegment === "about" ? "bg-[#624108] text-white" : ""
+          className={`font-semibold hover:bg-[#624108] ${
+            activeSegment === "about" ? "bg-white text-[#624108]" : "text-white"
           }`}
         >
           About
@@ -63,8 +71,10 @@ const Navbar = () => {
       <li>
         <Link
           href="/contact"
-          className={`text-white font-semibold hover:bg-[#624108] ${
-            activeSegment === "contact" ? "bg-[#624108] text-white" : ""
+          className={`font-semibold hover:bg-[#624108] ${
+            activeSegment === "contact"
+              ? "bg-white text-[#624108]"
+              : "text-white"
           }`}
         >
           Contact
