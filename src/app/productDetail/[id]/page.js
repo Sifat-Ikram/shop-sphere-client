@@ -31,8 +31,8 @@ const ProductDetail = () => {
   const [rating, setRating] = useState(0);
   const [replyText, setReplyText] = useState("");
   const [product] = useProduct();
-  const [review, refetch] = useReview();
-  const [cart] = useCart();
+  const [review] = useReview();
+  const [cart, cartRefetch] = useCart();
 
   const selectedProduct = product?.find((product) => product._id === id);
 
@@ -66,18 +66,27 @@ const ProductDetail = () => {
     }
   };
 
-  const handleOrder = (item) => {
-    // Check if the item is already in the cart
+  const handleToOrder = (item) => {
+    if (!user) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Please log in to add items to the cart",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
     const isInCart = cart.some(
       (cartItem) => cartItem.productId === id && cartItem.email === user.email
     );
 
     if (isInCart) {
-      // If the item is already in the cart, show an error message
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "This item is already added to the cart",
+        title: "This item is already in the cart",
         showConfirmButton: false,
         timer: 1000,
       });
@@ -93,7 +102,6 @@ const ProductDetail = () => {
         brand: item.brand,
         type: item.type,
         details: item.details,
-        numberItem: 1,
       };
 
       axiosPublic.post("/cart", cartItem).then((res) => {
@@ -101,14 +109,17 @@ const ProductDetail = () => {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "This item is added to the cart",
+            title: "This item has been added to the cart",
             showConfirmButton: false,
             timer: 1000,
           });
+          cartRefetch();
         }
       });
     }
   };
+
+  console.log(cart);
 
   const selectedReview = review.filter(
     (rev) => rev.productName === selectedProduct.name
@@ -178,7 +189,7 @@ const ProductDetail = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div className="flex max-md:flex-col justify-between gap-10 mb-6 max-sm:w-11/12 mx-auto">
         {/* Image Gallery */}
         <div>
           <Image
@@ -210,9 +221,9 @@ const ProductDetail = () => {
               <li>Category: {selectedProduct.category}</li>
             </ul>
           </div>
-          <div className="mb-4">
+          <div className="mb-4 flex items-center gap-4">
             <h2 className="text-lg font-semibold">Overall Rating:</h2>
-            <div className="flex items-center mb-2">
+            <div className="flex items-center gap-2">
               <span className="text-2xl font-bold">
                 {selectedProduct.rating.toFixed(1)}
               </span>
@@ -227,8 +238,8 @@ const ProductDetail = () => {
             </div>
           </div>
           <button
-            onClick={() => handleOrder(selectedProduct)}
-            className="buttons shadow-md transition duration-300"
+            onClick={() => handleToOrder(selectedProduct)}
+            className="buttons transition duration-300"
           >
             Add to Cart
           </button>
@@ -378,13 +389,14 @@ const ProductDetail = () => {
           )}
         </div>
       </div>
-      <div className="mb-32">
+      <div className="my-20">
         <h1 className="text-4xl font-bold mb-10 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#8d6b31] to-[#624108]">
           Products You May Also Like
         </h1>
         <div>
           <Swiper
             slidesPerView={4}
+            spaceBetween={10}
             navigation={true}
             modules={[Pagination, Navigation]}
             className="mySwiper"
@@ -430,6 +442,9 @@ const ProductDetail = () => {
                         </span>
                         ${product.price}
                       </h2>
+                      <div className="flex justify-end">
+                        <button className="buttons">View</button>
+                      </div>
                     </div>
                   </div>
                 </Link>

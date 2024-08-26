@@ -6,10 +6,22 @@
     background-color: #725523;
     border-radius: 8px;
     color: white;
-    font-size: 20px;
-    font-weight: 600;
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.buttons :hover {
+    background-color: #624108;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }

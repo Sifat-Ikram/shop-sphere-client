@@ -92,7 +92,7 @@ const AllProducts = () => {
         {/* Sidebar */}
         <div
           id="sidebar"
-          className={`md:w-1/4 w-full md:px-4 max-md:mx-auto shadow-lg p-6 pt-10 border-r-2 border-solid space-y-6 min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 ${
+          className={`md:w-1/4 max-md:w-4/5 max-md:mx-auto md:px-4 shadow-lg p-6 pt-10 border-r-2 border-solid space-y-6 min-h-screen bg-gradient-to-b from-gray-50 to-gray-200 ${
             isSidebarFixed ? "md:fixed" : "relative"
           }`}
           style={{
@@ -201,7 +201,7 @@ const AllProducts = () => {
         >
           {paginatedProducts.map((item) => (
             <Link key={item._id} href={`/productDetail/${item._id}`}>
-              <div className="relative rounded-xl overflow-hidden w-auto lg:h-[380px] h-[400px] py-5 bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300">
+              <div className="relative rounded-xl overflow-hidden w-auto max-md:w-4/5 mx-auto lg:h-[380px] h-[400px] py-5 bg-white shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <Image
                   src={item.image}
                   alt={item.name}

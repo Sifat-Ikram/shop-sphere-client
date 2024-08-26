@@ -12,6 +12,7 @@
     "@smastrom/react-rating": "^1.5.0",
     "@tanstack/react-query": "^5.52.0",
     "axios": "^1.7.3",
+    "bkash-payment": "^3.0.4",
     "firebase": "^10.12.5",
     "next": "^14.2.6",
     "react": "^18",
