@@ -7,6 +7,7 @@ import axios from "axios";
 import { AuthContext } from "@/components/provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";
+import { useRouter } from "next/navigation";
 
 const image_hosting_key = process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -16,6 +17,7 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const { createUser, updateUserProfile } = useContext(AuthContext) || {};
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -71,6 +73,7 @@ const SignUp = () => {
           axiosPublic.post("/user", userInfo).then((res) => {
             if (res.data.insertedId) {
               Swal.fire("You signed up successfully!");
+              router.push("/");
             } else {
               Swal.fire("Your signed up failed!");
             }

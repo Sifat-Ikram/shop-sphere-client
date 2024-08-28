@@ -5,10 +5,12 @@ import { useSelectedLayoutSegment } from "next/navigation";
 import { useContext } from "react";
 import { BsFillPersonFill } from "react-icons/bs";
 import { AuthContext } from "../provider/AuthProvider";
+import useAdmin from "../hooks/useAdmin";
 
 const Navbar = () => {
   const activeSegment = useSelectedLayoutSegment();
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin, IsAdminLoading] = useAdmin();
 
   const handleLogOut = async () => {
     try {
@@ -40,6 +42,22 @@ const Navbar = () => {
           }`}
         >
           Products
+        </Link>
+      </li>
+      <li>
+        <Link
+          href={
+            isAdmin
+              ? "/dashboardLayout/adminRoute/adminHome"
+              : "/dashboardLayout/userRoute/userHome"
+          }
+          className={`font-semibold hover:bg-[#624108] ${
+            activeSegment === (isAdmin ? "adminHome" : "userHome")
+              ? "bg-white text-[#624108]"
+              : "text-white"
+          }`}
+        >
+          Dashboard
         </Link>
       </li>
       <li>

@@ -5,28 +5,29 @@ import sign from "../../assets/sign/sign.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/components/provider/AuthProvider";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 const SignIn = () => {
   const { signIn } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const handleSubmit = (e) => {
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    signIn(email, password)
-      .then((res) => {
-        console.log(res.user);
-        Swal.fire("You signed up successfully!");
-        setSuccess("sign In successful!");
-      })
-      .catch((err) => {
-        console.error(err.message);
-        setError(err.message);
-      });
-
-    setError("");
+    try {
+      const res = await signIn(email, password);
+      console.log(res.user);
+      Swal.fire("You signed up successfully!");
+      setError(""); // Clear any previous errors
+      router.push("/");
+    } catch (err) {
+      console.error(err.message);
+      setError(err.message);
+    }
   };
 
   return (
@@ -38,18 +39,15 @@ const SignIn = () => {
           height={700}
           width={700}
           priority
-          style={{ width: "auto", height: "auto" }}
+          style={{ height: "auto" }}
         />
       </div>
       <div className="flex-col hero-content w-1/2 shadow-2xl p-8">
         <div className="text-center w-full">
-          <h1 className="text-5xl font-bold text-[#624108]">Sign up now!</h1>
+          <h1 className="text-5xl font-bold text-[#624108]">Sign in here!</h1>
         </div>
         <div className="w-full card shrink-0">
-          <form
-            onSubmit={handleSubmit} // Fixing onSubmit handler
-            className="w-4/5 mx-auto space-y-3"
-          >
+          <form onSubmit={handleSubmit} className="w-4/5 mx-auto space-y-3">
             <div>
               <label className="label">
                 <span className="label-text">Email</span>

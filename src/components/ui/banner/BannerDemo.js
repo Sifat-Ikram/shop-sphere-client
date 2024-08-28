@@ -20,6 +20,8 @@ const BannerDemo = ({ title, text, img, background }) => {
           width={500}
           height={400}
           className="rounded-lg w-full h-[400px]"
+          priority
+          style={{ height: "auto" }}
         />
       </div>
     </div>

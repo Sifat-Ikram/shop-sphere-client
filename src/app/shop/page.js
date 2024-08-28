@@ -336,7 +336,7 @@ const Shop = () => {
             Bkash Payment
           </button>
           <button onClick={() => handleFinalOrder()} className="buttons">
-            Pay On Delivery
+            Cash On Delivery
           </button>
         </div>
       </div>
