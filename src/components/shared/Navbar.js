@@ -1,20 +1,42 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
-import { useSelectedLayoutSegment } from "next/navigation";
+import Image from "next/image";
 import { useContext } from "react";
-import { BsFillPersonFill } from "react-icons/bs";
-import { AuthContext } from "../provider/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
+import { useQuery } from "@tanstack/react-query";
+import { BsFillPersonFill } from "react-icons/bs";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import { AuthContext } from "../provider/AuthProvider";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
+  const [isAdmin] = useAdmin();
+  const axiosPublic = useAxiosPublic();
   const activeSegment = useSelectedLayoutSegment();
   const { user, logOut } = useContext(AuthContext);
-  const [isAdmin, IsAdminLoading] = useAdmin();
+
+  const { data: users = [] } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/user");
+      return res.data;
+    },
+    onError: (err) => {
+      console.error("Error fetching cart data:", err);
+    },
+  });
+
+  if (!user && !users) {
+    return <span className="loading loading-dots loading-lg"></span>;
+  }
+
+  const currentUser = users.find((userItem) => userItem?.email === user?.email);
 
   const handleLogOut = async () => {
     try {
       const res = await logOut();
+      router.push("/");
     } catch (err) {
       console.error(err.message);
     }
@@ -154,35 +176,45 @@ const Navbar = () => {
       </div>
       <div className="navbar-end space-x-2">
         {user ? (
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end relative">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="rounded-full bg-white">
-                {user.photoURL ? (
+              <div className="rounded-full bg-white overflow-hidden border border-gray-200">
+                {currentUser?.photoUrl ? (
                   <Image
-                    src={user.photoURL || "/default-avatar.png"}
+                    src={currentUser?.photoUrl}
                     alt="user image"
                     height={40}
                     width={40}
+                    className="object-cover"
                   />
                 ) : (
-                  <BsFillPersonFill className="text-4xl text-[#624108]" />
+                  <BsFillPersonFill className="text-4xl text-[#624108] p-2" />
                 )}
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="flex flex-col dropdown-content bg-[#624108] rounded-box z-50 mt-3 w-52 p-2 shadow"
+              className="dropdown-content absolute bg-[#624108] text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
             >
-              <li className="text-white hover:bg-white cursor-pointer hover:text-[#624108] px-3 py-2 rounded-md w-full">
-                {user.displayName}
-              </li>
-              <li>
+              <div className="hover:bg-[#8c5d2f] px-4 py-2 rounded-md transition duration-200 ease-in-out">
+                <h1>
+                  <span className="block uppercase text-center text-xl font-medium">
+                    {currentUser?.name}
+                  </span>
+                </h1>
+                <h1>
+                  <span className="block text-center text-lg">
+                    {currentUser?.email}
+                  </span>
+                </h1>
+              </div>
+              <li className="hover:bg-[#8c5d2f] cursor-pointer rounded-md transition duration-200 ease-in-out">
                 <button
-                  className="text-white hover:bg-white hover:text-[#624108] px-3 py-2 rounded-md w-full"
+                  className="w-full text-center px-4 py-2 text-sm font-medium"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleLogOut();

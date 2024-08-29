@@ -11,6 +11,7 @@ import { MdDelete } from "react-icons/md";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import useOrder from "@/components/hooks/useOrder";
+import { useRouter } from "next/navigation";
 
 const Shop = () => {
   const { user } = useContext(AuthContext);
@@ -20,10 +21,11 @@ const Shop = () => {
   const [voucherCode, setVoucherCode] = useState("");
   const [discountedAmount, setDiscountedAmount] = useState(0);
   const axiosPublic = useAxiosPublic();
+  const router = useRouter();
 
-  console.log(order);
-
-  const selectedItem = cart.filter((cartItem) => cartItem.email === user.email);
+  const selectedItem = cart.filter(
+    (cartItem) => cartItem.email === user?.email
+  );
 
   const navButton = (
     <>
@@ -127,12 +129,15 @@ const Shop = () => {
     const orderInfo = {
       email: user.email,
       order: cart,
+      username: user.displayName,
       discountedAmount: discountedAmount,
       totalCost: totalCostCalculation(),
-      amount: amounts,
+      orderTime: new Date().toISOString(),
+      status: "pending",
     };
+    
     Swal.fire({
-      title: "Are you sure you want to  confirm the order?",
+      title: "Are you sure you want to confirm the order?",
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
@@ -150,6 +155,7 @@ const Shop = () => {
                 text: "This order has been placed.",
                 icon: "success",
               });
+              router.push("/");
             }
             orderRefetch();
           })
@@ -157,13 +163,14 @@ const Shop = () => {
             console.log(error.message);
             Swal.fire({
               title: "Error",
-              text: "An error occurred while deleting the item.",
+              text: "An error occurred while placing the order.",
               icon: "error",
             });
           });
       }
     });
   };
+
   const handleBkashPayment = async () => {
     try {
       await axiosPublic

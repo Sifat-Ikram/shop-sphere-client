@@ -8,6 +8,7 @@ import { AuthContext } from "@/components/provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";
 import { useRouter } from "next/navigation";
+import { updateCurrentUser, updateProfile } from "firebase/auth";
 
 const image_hosting_key = process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -16,7 +17,7 @@ const SignUp = () => {
   const axiosPublic = useAxiosPublic();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const { createUser, updateUserProfile } = useContext(AuthContext) || {};
+  const { createUser } = useContext(AuthContext) || {};
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -54,12 +55,12 @@ const SignUp = () => {
 
       createUser(email, password)
         .then((res) => {
-          updateUserProfile(res.user, {
+          updateProfile(res.user, {
             displayName: name,
             photoUrl: resImage.data.data.display_url,
           })
-            .then(() => {
-              console.log("Profile updated");
+            .then((res) => {
+              console.log(res);
             })
             .catch((err) => {
               console.error(err.message);

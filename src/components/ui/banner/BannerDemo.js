@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const BannerDemo = ({ title, text, img, background }) => {
   return (
@@ -11,7 +12,9 @@ const BannerDemo = ({ title, text, img, background }) => {
           {title}
         </h1>
         <p className="text-base sm:text-lg md:text-2xl mb-6">{text}</p>
-        <button className="buttons">Shop Now</button>
+        <Link href={"/allProducts"}>
+          <button className="buttons">Shop Now</button>
+        </Link>
       </div>
       <div className="flex-1 flex justify-center md:pr-20">
         <Image

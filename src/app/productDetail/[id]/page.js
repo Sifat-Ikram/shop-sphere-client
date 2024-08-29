@@ -95,6 +95,7 @@ const ProductDetail = () => {
       const cartItem = {
         productId: item._id,
         email: user.email,
+        username: user.displayName,
         name: item.name,
         category: item.category,
         image: item.image,
@@ -118,8 +119,6 @@ const ProductDetail = () => {
       });
     }
   };
-
-  console.log(cart);
 
   const selectedReview = review.filter(
     (rev) => rev.productName === selectedProduct.name

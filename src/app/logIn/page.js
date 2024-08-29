@@ -42,7 +42,7 @@ const SignIn = () => {
           style={{ height: "auto" }}
         />
       </div>
-      <div className="flex-col hero-content w-1/2 shadow-2xl p-8">
+      <div className="flex-col hero-content md:w-1/2 w-11/12 max-md:mx-auto shadow-2xl p-8">
         <div className="text-center w-full">
           <h1 className="text-5xl font-bold text-[#624108]">Sign in here!</h1>
         </div>
