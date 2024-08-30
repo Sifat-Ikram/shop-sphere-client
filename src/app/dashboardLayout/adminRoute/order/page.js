@@ -94,37 +94,39 @@ const AdminOrders = () => {
             key={orderedItem._id}
             className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300"
           >
-            <h3 className="text-xl font-bold text-[#624108] mb-2">
-              Order ID: {orderedItem._id}
-            </h3>
-            <p className="text-gray-800 mb-2">
-              <span className="font-semibold">Customer Name:</span>{" "}
-              {orderedItem.username}
-            </p>
-            <p className="text-gray-800 mb-2">
-              <span className="font-semibold">Date:</span>{" "}
-              {format(new Date(orderedItem.orderTime), "PPP")}
-            </p>
-            <p className="text-gray-800 mb-2">
-              <span className="font-semibold">Total Amount:</span>{" "}
-              <span className="text-green-600 font-semibold">
-                ${orderedItem.discountedAmount.toFixed(2)}
-              </span>
-            </p>
-            <p className="text-gray-800 mb-4">
-              <span className="font-semibold">Status:</span>{" "}
-              <span
-                className={`badge p-3 uppercase text-white ${
-                  orderedItem.status === "Completed"
-                    ? "badge-success"
-                    : orderedItem.status === "Pending"
-                    ? "badge-warning"
-                    : "badge-error"
-                }`}
-              >
-                {orderedItem.status}
-              </span>
-            </p>
+            <div>
+              <h3 className="text-xl font-bold text-[#624108] mb-2">
+                Order ID: {orderedItem._id}
+              </h3>
+              <p className="text-gray-800 mb-2">
+                <span className="font-semibold">Customer Name:</span>{" "}
+                {orderedItem.username}
+              </p>
+              <p className="text-gray-800 mb-2">
+                <span className="font-semibold">Date:</span>{" "}
+                {format(new Date(orderedItem.orderTime), "PPP")}
+              </p>
+              <p className="text-gray-800 mb-2">
+                <span className="font-semibold">Total Amount:</span>{" "}
+                <span className="text-green-600 font-semibold">
+                  ${orderedItem.discountedAmount.toFixed(2)}
+                </span>
+              </p>
+              <p className="text-gray-800 mb-4">
+                <span className="font-semibold">Status:</span>{" "}
+                <span
+                  className={`badge p-3 uppercase text-white ${
+                    orderedItem.status === "Completed"
+                      ? "badge-success"
+                      : orderedItem.status === "Pending"
+                      ? "badge-warning"
+                      : "badge-error"
+                  }`}
+                >
+                  {orderedItem.status}
+                </span>
+              </p>
+            </div>
             <div className="flex justify-center items-center space-x-2">
               <div>
                 <button

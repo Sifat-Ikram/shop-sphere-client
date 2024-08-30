@@ -65,7 +65,7 @@ const AdminCart = () => {
             {cart.map((cartItem) => (
               <div
                 key={cartItem._id}
-                className="relative rounded-xl overflow-hidden w-72 max-md:w-4/5 mx-auto py-5 bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
+                className="relative rounded-xl cursor-pointer overflow-hidden w-72 max-md:w-4/5 mx-auto py-5 bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
               >
                 <div className="flex justify-center mb-4">
                   <Image
@@ -99,7 +99,7 @@ const AdminCart = () => {
                       {cartItem?.username}
                     </p>
                   </div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center mt-4">
                     <button
                       onClick={() => handleDelete(cartItem)}
                       className="flex justify-center items-center gap-2 px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105"

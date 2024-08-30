@@ -8,7 +8,7 @@ import { AuthContext } from "@/components/provider/AuthProvider";
 import Swal from "sweetalert2";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";
 import { useRouter } from "next/navigation";
-import { updateCurrentUser, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 
 const image_hosting_key = process.env.NEXT_PUBLIC_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;

@@ -224,7 +224,7 @@ const ProductDetail = () => {
             <h2 className="text-lg font-semibold">Overall Rating:</h2>
             <div className="flex items-center gap-2">
               <span className="text-2xl font-bold">
-                {selectedProduct.rating.toFixed(1)}
+                {selectedProduct.rating}
               </span>
               <div className="flex ml-2">
                 {[...Array(5)].map((_, i) => (
@@ -401,12 +401,10 @@ const ProductDetail = () => {
             className="mySwiper"
             breakpoints={{
               0: {
-                // Screens larger than 640px (phone)
                 slidesPerView: 1,
               },
-              768: {
-                // Screens larger than 768px (tablet)
-                slidesPerView: 2,
+              730: {
+                slidesPerView: 3,
               },
               1024: {
                 // Screens larger than 1024px (desktop)

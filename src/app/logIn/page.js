@@ -22,7 +22,7 @@ const SignIn = () => {
       const res = await signIn(email, password);
       console.log(res.user);
       Swal.fire("You signed up successfully!");
-      setError(""); // Clear any previous errors
+      setError("");
       router.push("/");
     } catch (err) {
       console.error(err.message);

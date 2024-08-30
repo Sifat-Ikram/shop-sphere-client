@@ -25,3 +25,13 @@
     padding-top: 8px;
     padding-bottom: 8px;
 }
+
+.file-input-custom {
+    border-color: #624108; /* Custom border color */
+    color: #624108; /* Custom text color if needed */
+  }
+  
+  .file-input-custom::-webkit-file-upload-button {
+    color: #624108; /* Custom button color for WebKit browsers */
+    background-color: transparent; /* Optional: Set background to transparent if needed */
+  }

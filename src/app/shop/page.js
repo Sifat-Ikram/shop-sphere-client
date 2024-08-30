@@ -128,7 +128,10 @@ const Shop = () => {
   const handleFinalOrder = () => {
     const orderInfo = {
       email: user.email,
-      order: cart,
+      order: selectedItem.map((item) => ({
+        ...item,
+        quantity: amounts[item.name] || 1,
+      })),
       username: user.displayName,
       discountedAmount: discountedAmount,
       totalCost: totalCostCalculation(),
