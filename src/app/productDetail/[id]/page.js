@@ -41,7 +41,7 @@ const ProductDetail = () => {
   }
 
   const moreProducts = product.filter(
-    (item) => item.category === selectedProduct.category
+    (item) => item.category === selectedProduct?.category
   );
 
   const handleReviewSubmit = async (e) => {

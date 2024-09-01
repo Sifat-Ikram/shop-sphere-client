@@ -226,8 +226,34 @@ const Navbar = () => {
             </ul>
           </div>
         ) : (
-          <div className="flex justify-center items-center gap-2 sm:gap-3">
-            {navButton}
+          <div className="dropdown dropdown-end relative">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="rounded-full bg-white overflow-hidden border border-gray-200">
+                {currentUser?.photoUrl ? (
+                  <Image
+                    src={currentUser?.photoUrl}
+                    alt="user image"
+                    height={40}
+                    width={40}
+                    className="object-cover"
+                  />
+                ) : (
+                  <BsFillPersonFill className="text-4xl text-[#624108] p-2" />
+                )}
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content absolute bg-[#624108] text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
+            >
+              <div className="flex flex-col justify-center items-center gap-2">
+                {navButton}
+              </div>
+            </ul>
           </div>
         )}
       </div>

@@ -22,8 +22,6 @@ const AdminCart = () => {
     },
   });
 
-  console.log(cart);
-
   const handleDelete = (cart) => {
     Swal.fire({
       title: "Are you sure?",

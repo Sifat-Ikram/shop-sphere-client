@@ -20,11 +20,11 @@ const BannerDemo = ({ title, text, img, background }) => {
         <Image
           src={img}
           alt="banner"
-          width={500}
-          height={400}
+          width={"auto"}
+          height={"auto"}
           className="rounded-lg w-full h-[400px]"
           priority
-          style={{ height: "auto" }}
+          style={{ height: "400px" }}
         />
       </div>
     </div>

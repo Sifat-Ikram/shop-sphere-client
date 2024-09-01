@@ -8,7 +8,7 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import Link from "next/link";
 
-const ITEMS_PER_PAGE = 9; // Number of items to show per page
+const ITEMS_PER_PAGE = 9;
 
 const AllProducts = () => {
   const [isSidebarFixed, setIsSidebarFixed] = useState(false);
