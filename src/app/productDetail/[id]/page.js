@@ -14,7 +14,6 @@ import { useContext, useState } from "react";
 import Link from "next/link";
 import { AuthContext } from "@/components/provider/AuthProvider";
 import useProduct from "@/components/hooks/useProduct";
-import useReview from "@/components/hooks/useReview";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -22,6 +21,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import useCart from "@/components/hooks/useCart";
+import useReviews from "@/components/hooks/useReviews";
+import axios from "axios";
 
 const ProductDetail = () => {
   const { user } = useContext(AuthContext);
@@ -31,7 +32,7 @@ const ProductDetail = () => {
   const [rating, setRating] = useState(0);
   const [replyText, setReplyText] = useState("");
   const [product] = useProduct();
-  const [review] = useReview();
+  const [reviews, reviewRefetch] = useReviews();
   const [cart, cartRefetch] = useCart();
 
   const selectedProduct = product?.find((product) => product._id === id);
@@ -44,9 +45,16 @@ const ProductDetail = () => {
     (item) => item.category === selectedProduct?.category
   );
 
+  const selectedReview = reviews.filter(
+    (rev) => rev.productName === selectedProduct.name
+  );
+
+  console.log(selectedReview);
+
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     const reviewInfo = {
+      email: user.email,
       username: user?.displayName,
       rating,
       text: reviewText,
@@ -54,13 +62,15 @@ const ProductDetail = () => {
       date: new Date().toISOString(),
     };
 
+    console.log(reviewInfo);
+
     try {
       const res = await axiosPublic.post(`/review`, reviewInfo);
       if (res.status === 200) {
         setReviewText("");
         setRating(0);
       }
-      refetch();
+      reviewRefetch();
     } catch (error) {
       Swal.fire("Failed to submit review");
     }
@@ -120,45 +130,38 @@ const ProductDetail = () => {
     }
   };
 
-  const selectedReview = review.filter(
-    (rev) => rev.productName === selectedProduct.name
-  );
-
-  const handleReplyText = (e) => {
-    setReplyText(e.target.value);
+  const handleReplyText = async (reviewId) => {
+    try {
+      const response = await axiosPublic.post(`/review/${reviewId}/replies`, {
+        replyText: replyText,
+        replyUser: user?.displayName,
+      });
+      if (response.status === 200) {
+        reviewRefetch();
+        setReplyText("");
+      }
+    } catch (error) {
+      Swal.fire("Failed to add reply");
+    }
   };
+
+  console.log(selectedReview);
 
   const handleLike = async (reviewId) => {
     try {
       await axiosPublic.post(`/review/${reviewId}/like`);
-      refetch();
+      reviewRefetch();
     } catch (error) {
-      console.error("Error liking review:", error);
+      Swal.fire("Failed to like the review");
     }
   };
 
   const handleDislike = async (reviewId) => {
     try {
       await axiosPublic.post(`/review/${reviewId}/dislike`);
-      refetch();
+      reviewRefetch();
     } catch (error) {
-      console.error("Error disliking review:", error);
-    }
-  };
-
-  const handleReply = async (reviewId) => {
-    const replyInfo = {
-      username: user?.displayName,
-      text: replyText,
-      date: new Date().toISOString(),
-    };
-
-    try {
-      await axiosPublic.post(`/review/${reviewId}/reply`, replyInfo);
-      setReplyText("");
-      refetch();
-    } catch (error) {
-      console.error("Error replying to review:", error);
+      Swal.fire("Failed to like the review");
     }
   };
 
@@ -307,74 +310,97 @@ const ProductDetail = () => {
 
       {/* User Reviews */}
       <div className="mt-10">
-        <h2 className="text-2xl font-semibold mb-4">Reviews</h2>
-        <div>
+        <h2 className="text-3xl font-bold mb-6 text-[#624108]">Reviews</h2>
+        <div className="space-y-6">
           {selectedReview.length > 0 ? (
             selectedReview.map((review, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg p-4 mb-4 shadow-md"
+                className="bg-white rounded-lg p-6 shadow-lg transition-transform transform hover:scale-105 border border-gray-200"
               >
-                <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-lg font-semibold">{review.username}</h3>
+                    <h3 className="text-xl font-semibold text-[#624108]">
+                      {review.username}
+                    </h3>
                     <p className="text-gray-600 text-sm">
                       {new Date(review.date).toLocaleDateString()}
                     </p>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center space-x-2">
                     {[...Array(5)].map((_, i) => (
                       <FaStar
                         key={i}
                         color={i < review.rating ? "gold" : "gray"}
+                        className="text-sm"
                       />
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-700 mb-2">{review.text}</p>
-                <div className="ml-3">
-                  <h1 className="text-lg font-semibold">Replies:</h1>
-                  <div className="ml-5">
-                    {review?.replies?.map((reply) => (
-                      <div
-                        key={reply._id}
-                        className="p-2 rounded-md mb-2 bg-gray-100"
-                      >
-                        <h3 className="text-lg font-semibold">
-                          {reply.username}
-                        </h3>
-                        <p className="text-gray-700">{reply.text}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex items-center space-x-4">
+                <p className="text-gray-700 mb-4">{review.text}</p>
+                <div className="flex mb-5 items-center gap-8">
                   <button
                     onClick={() => handleLike(review._id)}
-                    className="flex items-center text-gray-600 hover:text-[#624108]"
+                    className="flex items-center text-gray-600 hover:text-[#624108] transition-colors duration-300"
                   >
                     <FaThumbsUp className="mr-1" /> {review.likes || 0}
                   </button>
                   <button
                     onClick={() => handleDislike(review._id)}
-                    className="flex items-center text-gray-600 hover:text-red-500"
+                    className="flex items-center text-gray-600 hover:text-red-500 transition-colors duration-300"
                   >
                     <FaThumbsDown className="mr-1" /> {review.dislikes || 0}
                   </button>
-                  <details className="flex items-center text-gray-600">
-                    <summary className="cursor-pointer">Reply</summary>
-                    <div className="p-2 mt-2 bg-base-200 rounded-md">
+                </div>
+                <div className="ml-3 mb-4">
+                  <h4 className="text-lg font-semibold text-[#624108]">
+                    Replies:
+                  </h4>
+                  <div className="ml-5 space-y-2">
+                    {review.replies && review.replies.length > 0 && (
+                      <div className="w-11/12 mx-auto">
+                        {review.replies.map((reply) => (
+                          <div key={reply.replyText} className="reply mt-4">
+                            <p>{reply.replyUser || 'Anonymous'}</p>
+                            <p>{reply.replyText}</p>
+                            <small>
+                              {new Date(reply.createdAt).toLocaleString()}
+                            </small>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center space-x-6">
+                  <details className="flex items-center text-gray-600 group">
+                    <summary className="cursor-pointer flex items-center space-x-1">
+                      <span className="font-semibold">Reply</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-4 h-4 transition-transform group-open:rotate-180"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </summary>
+                    <div className="p-4 mt-2 flex max-sm:flex-col items-center max-sm:gap-2">
                       <input
                         type="text"
-                        className="w-full p-2 border rounded"
-                        name="reply"
+                        onChange={(e) => setReplyText(e.target.value)}
+                        className="w-full p-2 border rounded-md border-gray-300"
                         placeholder="Write a reply..."
-                        value={replyText}
-                        onChange={handleReplyText}
                       />
                       <button
-                        onClick={() => handleReply(review._id)}
-                        className="buttons transition duration-300 mt-2"
+                        onClick={() => handleReplyText(review._id)}
+                        className="bg-[#725523] hover:bg-[#624108] p-2 text-white rounded-md w-40 transition duration-300"
                       >
                         Submit Reply
                       </button>
@@ -384,10 +410,12 @@ const ProductDetail = () => {
               </div>
             ))
           ) : (
-            <h1>No reviews yet!</h1>
+            <p className="text-center text-gray-600">No reviews yet!</p>
           )}
         </div>
       </div>
+
+      {/* releted product */}
       <div className="my-20">
         <h1 className="text-4xl font-bold mb-10 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#8d6b31] to-[#624108]">
           Products You May Also Like
@@ -415,7 +443,7 @@ const ProductDetail = () => {
             {moreProducts.map((product) => (
               <SwiperSlide key={product._id}>
                 <Link href={`/productDetail/${product._id}`}>
-                  <div className="bg-gradient-to-br from-[#f5f3eb] to-[#eae1d7] shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 h-80 border border-[#624108]">
+                  <div className="bg-gradient-to-br from-[#f5f3eb] to-[#eae1d7] h-[350px] shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 border border-[#624108]">
                     <Image
                       src={product.image}
                       alt={product.name}

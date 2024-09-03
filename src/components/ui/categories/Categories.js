@@ -9,17 +9,15 @@ import { Navigation } from "swiper/modules";
 
 const Categories = () => {
   const [category] = useCategory();
-  console.log(category);
 
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="my-20">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800">
+        <h2 className="lg:text-5xl md:text-3xl text-xl  font-bold text-center mb-12 text-gray-800">
           Featured Categories
         </h2>
         <Swiper
           spaceBetween={20}
-          loop={true}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",

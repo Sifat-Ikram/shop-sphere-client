@@ -32,11 +32,10 @@ const UserOrders = () => {
   if (isLoading) {
     return <span className="loading loading-spinner loading-lg"></span>;
   }
-  
 
   // Find the selected order for the current user
   const selectedOrder = orders.find(
-    (orderItem) => orderItem.email === user.email
+    (orderItem) => orderItem?.email === user?.email
   );
 
   const handleDeleteEntireOrder = (orderedItem) => {

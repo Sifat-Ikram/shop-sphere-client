@@ -4,7 +4,7 @@ import shopping from "../../../assets/homePage/shopping.webp";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full md:space-x-20 mb-20 px-4 md:px-8">
+    <section className="relative w-full md:space-x-20 my-10 px-4 md:px-8">
       <div
         className="flex items-center justify-end text-right"
         style={{
