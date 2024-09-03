@@ -19,13 +19,13 @@ const NewArrivals = () => {
   console.log(selectedProduct);
 
   return (
-    <section className="py-12 mt-8 bg-gray-100">
+    <section className="py-12 mt-8">
       <div className="container mx-auto space-y-10">
         <div className="text-center space-y-5">
-          <h2 className="text-5xl font-extrabold text-gray-900">
+          <h2 className="text-5xl font-extrabold dark:text-white text-gray-900">
             New Arrivals
           </h2>
-          <p className="text-gray-600 text-lg w-3/5 mx-auto leading-relaxed">
+          <p className="text-gray-600 text-lg dark:text-white w-3/5 mx-auto leading-relaxed">
             Discover the latest additions to our collection. Find your next
             favorite product from our handpicked selection of new arrivals.
             Swipe through and explore now!
@@ -33,7 +33,7 @@ const NewArrivals = () => {
         </div>
         <div>
           <Swiper
-            spaceBetween={15}
+            spaceBetween={0}
             slidesPerView={1}
             breakpoints={{
               640: {
@@ -54,26 +54,26 @@ const NewArrivals = () => {
             className="mySwiper"
           >
             {selectedProduct.map((product) => (
-              <SwiperSlide key={product.id} className="w-full px-2">
+              <SwiperSlide key={product.id} className="px-2">
                 <Link href={`/productDetail/${product._id}`}>
-                  <div className="flex items-center bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                  <div className="flex items-center border-[1px] border-solid dark:border-white border-[#624108] h-32 rounded-lg overflow-hidden duration-300">
                     <Image
                       src={product.image}
                       alt={product.name}
                       height={200}
                       width={200}
-                      className="object-cover w-48 h-48"
+                      className="object-cover w-28 h-32"
                     />
                     <div className="p-4 flex-1">
-                      <h1 className="text-xl font-bold text-gray-800 mb-2">
+                      <h1 className="text-lg font-bold dark:text-white text-gray-800 mb-2">
                         {product.name.length > 20
                           ? `${product.name.slice(0, 20)}...`
                           : product.name}
                       </h1>
-                      <p className="text-gray-600 text-sm mb-1">
+                      <p className="text-gray-600 dark:text-white text-sm mb-1">
                         {product.category}
                       </p>
-                      <p className="text-gray-900 font-semibold text-lg">
+                      <p className="text-gray-900 dark:text-white font-semibold text-lg">
                         ${product.price}
                       </p>
                     </div>

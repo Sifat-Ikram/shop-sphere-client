@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import sign from "../../assets/sign/authentication.gif";
+import sign from "../../assets/sign/sign.png";
 import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "@/components/provider/AuthProvider";
@@ -32,7 +32,6 @@ const SignUp = () => {
     formData.append("image", image);
 
     try {
-      // Upload image to external service (like imgbb)
       const resImage = await axios.post(image_hosting_api, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -104,13 +103,13 @@ const SignUp = () => {
       </div>
       <div className="flex-col hero-content lg:w-1/2 shadow-2xl p-8">
         <div className="text-center w-full">
-          <h1 className="text-5xl font-bold text-[#624108]">Sign up now!</h1>
+          <h1 className="text-5xl font-bold text-[#624108] dark:text-white">Sign up now!</h1>
         </div>
         <div className="w-full card shrink-0">
           <form onSubmit={handleSubmit} className="w-4/5 mx-auto space-y-3">
             <div>
               <label className="label">
-                <span className="label-text">Full Name</span>
+                <span className="label-text dark:text-white">Full Name</span>
               </label>
               <input
                 name="name"
@@ -121,7 +120,7 @@ const SignUp = () => {
             </div>
             <div>
               <label className="label">
-                <span className="label-text">Upload your photo</span>
+                <span className="label-text dark:text-white">Upload your photo</span>
               </label>
               <input
                 name="image"
@@ -131,7 +130,7 @@ const SignUp = () => {
             </div>
             <div>
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text dark:text-white">Email</span>
               </label>
               <input
                 name="email"
@@ -142,7 +141,7 @@ const SignUp = () => {
             </div>
             <div>
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text dark:text-white">Password</span>
               </label>
               <input
                 name="password"
@@ -152,18 +151,18 @@ const SignUp = () => {
               />
             </div>
             <div>
-              <button type="submit" className="buttons w-full text-lg">
+              <button type="submit" className="buttons dark:bg-dark dark:border-2 border-solid border-white dark:text-white w-full text-lg">
                 Sign up
               </button>
             </div>
-            {error && <div className="text-red-500 mt-2">{error}</div>}
-            {success && <div className="text-green-500 mt-2">{success}</div>}
+            {error && <div className="text-red-500 dark:text-white mt-2">{error}</div>}
+            {success && <div className="text-green-500 dark:text-white mt-2">{success}</div>}
           </form>
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-4 dark:text-white">
             <Link href="/logIn">
               <p>
                 Already have an account?{" "}
-                <span className="text-[#624108] font-semibold">Sign in</span>
+                <span className="text-[#624108] font-semibold dark:text-white">Sign in</span>
               </p>
             </Link>
           </div>

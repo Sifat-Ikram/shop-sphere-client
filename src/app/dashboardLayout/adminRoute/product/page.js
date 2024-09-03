@@ -39,16 +39,11 @@ const AdminProduct = () => {
 
   return (
     <div className="lg:px-10 px-4 sm:px-6 mt-10">
-      <h1 className="uppercase text-4xl font-bold text-[#624108] text-center mb-8">
+      <h1 className="uppercase text-4xl font-bold text-[#624108] dark:text-white text-center mb-16">
         Products Management
       </h1>
       <div className="w-full mx-auto">
-        <div className="">
-          <div className="flex justify-between mb-6">
-            <h1 className="text-xl md:text-2xl font-semibold text-[#624108]">
-              Available products: {product.length}
-            </h1>
-          </div>
+        <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {product.map((productItem) => (
               <div

@@ -74,10 +74,10 @@ const UserOrders = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:p-6">
-      <header className="bg-white shadow-md p-4 sm:p-6 mb-6 sm:mb-8 rounded-lg">
+    <div className="min-h-screen dark:bg-dark p-4 sm:p-6">
+      <header className="dark:bg-dark shadow-md p-4 sm:p-6 mb-6 sm:mb-8 rounded-lg">
         <div className="container mx-auto text-center">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
+          <h1 className="text-2xl dark:text-white sm:text-3xl font-extrabold text-gray-800">
             My Orders
           </h1>
         </div>
@@ -85,25 +85,25 @@ const UserOrders = () => {
       {selectedOrder ? (
         <div className="p-6">
           <div className="flex md:justify-between max-md:space-y-5 justify-center max-md:flex-col md:w-4/5 mx-auto">
-            <p className="text-gray-600 md:px-4">
+            <p className="text-gray-600 dark:text-white md:px-4">
               <span className="font-bold">Order date:</span> <br />{" "}
               {format(new Date(selectedOrder?.orderTime), "PPPP")}
             </p>
-            <p className="text-gray-600 md:px-4">
+            <p className="text-gray-600 dark:text-white md:px-4">
               <span className="font-bold">Delivery date:</span> <br />
               <h1>10 Days</h1>
             </p>
           </div>
           <div className="md:flex md:justify-between justify-center gap-10 max-md:space-y-5 items-center mt-8 md:w-11/12 mx-auto">
-            <p className="text-gray-600 md:px-4">
+            <p className="text-gray-600 dark:text-white md:px-4">
               <span className="font-bold">Total Cost: </span> <br /> $
               {selectedOrder?.totalCost}
             </p>
-            <h2 className="text-gray-600 md:px-4">
+            <h2 className="text-gray-600 dark:text-white md:px-4">
               <span className="font-bold">Order Status:</span> <br />
               {selectedOrder?.status}
             </h2>
-            <p className="text-gray-600 md:px-4">
+            <p className="text-gray-600 dark:text-white md:px-4">
               <span className="font-bold">Discounted Amount: </span> <br />$
               {selectedOrder?.discountedAmount}
             </p>
@@ -118,13 +118,13 @@ const UserOrders = () => {
             </button>
           </div>
           <div className="mb-10 mt-20 text-center">
-            <h1 className="text-4xl font-semibold">Ordered Products</h1>
+            <h1 className="text-4xl font-semibold dark:text-white">Ordered Products</h1>
           </div>
           <div className="space-y-4 grid grid-cols-1 gap-6">
             {selectedOrder?.order?.map((orderItem) => (
               <div
                 key={orderItem._id}
-                className="flex items-center cursor-pointer md:w-11/12 lg:w-3/5 mx-auto gap-8 bg-gray-100 p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300"
+                className="flex items-center cursor-pointer md:w-11/12 lg:w-3/5 mx-auto gap-8 dark:bg-dark p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300"
               >
                 <Image
                   src={orderItem.image}
@@ -134,7 +134,7 @@ const UserOrders = () => {
                   style={{ width: "auto", height: "auto" }}
                   className="w-full sm:w-24 h-auto rounded-lg shadow"
                 />
-                <div className="flex-1">
+                <div className="flex-1 dark:text-white">
                   <div>
                     <h3 className="text-lg font-semibold">{orderItem.name}</h3>
                     <p>Category: {orderItem.category}</p>

@@ -37,10 +37,10 @@ const TrendingItems = () => {
       <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 dark:text-white">
               Trending Items
             </h2>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-gray-700 dark:text-white">
               Discover the hottest trends and top picks of the season. Don’t
               miss out on these must-have items!
             </p>
@@ -49,7 +49,7 @@ const TrendingItems = () => {
             {shuffledProducts.slice(0, 8).map((productItem) => (
               <div
                 key={productItem._id}
-                className="relative bg-white h-[400px] rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 animate-fadeIn"
+                className="relative h-[400px] rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 animate-fadeIn"
               >
                 <Image
                   src={productItem.image}
@@ -59,13 +59,13 @@ const TrendingItems = () => {
                   className="w-full h-48 object-cover rounded-t-lg"
                 />
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-gray-800 tracking-wide">
+                  <h3 className="text-lg font-bold text-gray-800 dark:text-white tracking-wide">
                     {productItem.name}
                   </h3>
-                  <p className="mt-3 space-y-2 text-lg font-semibold">
+                  <p className="mt-3 space-y-2 text-lg font-semibold dark:text-white">
                     Category: {productItem.category}
                   </p>
-                  <p className="text-xl font-semibold text-[#a67c00]">
+                  <p className="text-xl font-semibold text-[#a67c00] dark:text-white">
                     ${productItem.price}
                   </p>
                   <div className="flex items-center justify-between">
@@ -75,7 +75,7 @@ const TrendingItems = () => {
                         value={productItem.rating}
                         readOnly
                       />
-                      <span className="text-sm text-gray-700">
+                      <span className="text-sm text-gray-700 dark:text-white">
                         {productItem.rating}
                       </span>
                     </div>

@@ -8,6 +8,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import { AuthContext } from "../provider/AuthProvider";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import DarkModeButton from "../ui/darkModeButton/DarkModeButton";
 
 const Navbar = () => {
   const router = useRouter();
@@ -126,12 +127,12 @@ const Navbar = () => {
   const navButton = (
     <>
       <Link href={"/register"} className="flex justify-center items-center">
-        <button className="text-white hover:bg-white hover:text-[#624108] px-3 py-2 rounded-md w-full">
+        <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
           Sign up
         </button>
       </Link>
       <Link href={"/logIn"} className="flex justify-center items-center">
-        <button className="text-white hover:bg-white hover:text-[#624108] px-3 py-2 rounded-md w-full">
+        <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
           Sign in
         </button>
       </Link>
@@ -139,7 +140,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-[#725523] px-4 sm:px-10 py-4 shadow-lg">
+    <div className="navbar bg-[#725523] px-4 sm:px-10 py-4 shadow-lg dark:bg-dark">
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -192,13 +193,13 @@ const Navbar = () => {
                     className="object-cover"
                   />
                 ) : (
-                  <BsFillPersonFill className="text-4xl text-[#624108] p-2" />
+                  <BsFillPersonFill className="text-4xl text-[#624108] dark:text-white p-2" />
                 )}
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content absolute bg-[#624108] text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
+              className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
             >
               <div className="hover:bg-[#8c5d2f] px-4 py-2 rounded-md transition duration-200 ease-in-out">
                 <h1>
@@ -232,7 +233,7 @@ const Navbar = () => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="rounded-full bg-white overflow-hidden border border-gray-200">
+              <div className="rounded-full bg-white dark:bg-dark overflow-hidden border border-gray-200">
                 {currentUser?.photoUrl ? (
                   <Image
                     src={currentUser?.photoUrl}
@@ -242,13 +243,13 @@ const Navbar = () => {
                     className="object-cover"
                   />
                 ) : (
-                  <BsFillPersonFill className="text-4xl text-[#624108] p-2" />
+                  <BsFillPersonFill className="text-4xl text-[#624108] dark:text-white p-2" />
                 )}
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content absolute bg-[#624108] text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
+              className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
             >
               <div className="flex flex-col justify-center items-center gap-2">
                 {navButton}
@@ -256,6 +257,9 @@ const Navbar = () => {
             </ul>
           </div>
         )}
+        <div>
+          <DarkModeButton />
+        </div>
       </div>
     </div>
   );

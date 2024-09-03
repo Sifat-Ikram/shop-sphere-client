@@ -13,7 +13,7 @@ const SpecialOffers = () => {
   return (
     <section className="lg:py-16 md:py-12 py-8">
       <div className="container mx-auto px-6">
-        <h2 className="lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-10 lg:mb-16 text-gray-800 tracking-wide">
+        <h2 className="lg:text-5xl md:text-4xl dark:text-white text-3xl font-bold text-center mb-10 lg:mb-16 text-gray-800 tracking-wide">
           Special Offers
         </h2>
         <Swiper

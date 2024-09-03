@@ -15,9 +15,9 @@ const ReviewPage = () => {
   return (
     <div className="my-20 w-4/5 mx-auto">
       <div className="text-center">
-        <p className="text-lg text-gray-600">--What Our Clients Say--</p>
+        <p className="text-lg text-gray-600 dark:text-white">--What Our Clients Say--</p>
         <div className="border-t-2 border-b-2 border-gray-300 py-5 w-60 mx-auto">
-          <h1 className="uppercase text-3xl font-bold">Testimonials</h1>
+          <h1 className="uppercase text-3xl font-bold dark:text-white">Testimonials</h1>
         </div>
       </div>
       <Swiper
@@ -60,8 +60,8 @@ const ReviewPage = () => {
                 />
               </svg>
               <div className="space-y-4 text-center max-w-lg">
-                <p className="text-lg font-medium text-gray-700 italic">{`"${review.text}"`}</p>
-                <h1 className="text-xl font-semibold text-gray-900">
+                <p className="text-lg font-medium text-gray-700 italic dark:text-white">{`"${review.text}"`}</p>
+                <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
                   {review.username}
                 </h1>
               </div>

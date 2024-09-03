@@ -77,11 +77,11 @@ const AdminOrders = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 sm:p-6">
+    <div className="min-h-screen dark:bg-dark p-4 sm:p-6">
       {/* Header */}
-      <header className="bg-white shadow-md p-4 sm:p-6 mb-6 sm:mb-8 rounded-lg">
+      <header className="dark:bg-dark shadow-md p-4 sm:p-6 mb-6 sm:mb-8 rounded-lg">
         <div className="container mx-auto text-center">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-800">
+          <h1 className="text-2xl dark:text-white sm:text-3xl font-extrabold text-gray-800">
             All Orders
           </h1>
         </div>
@@ -92,27 +92,27 @@ const AdminOrders = () => {
         {orders.map((orderedItem) => (
           <div
             key={orderedItem._id}
-            className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300"
+            className="dark:bg-dark shadow-lg rounded-lg p-6 hover:shadow-xl transition duration-300"
           >
             <div>
-              <h3 className="text-xl font-bold text-[#624108] mb-2">
+              <h3 className="text-xl dark:text-white font-bold text-[#624108] mb-2">
                 Order ID: {orderedItem._id}
               </h3>
-              <p className="text-gray-800 mb-2">
+              <p className="text-gray-800 dark:text-white mb-2">
                 <span className="font-semibold">Customer Name:</span>{" "}
                 {orderedItem.username}
               </p>
-              <p className="text-gray-800 mb-2">
+              <p className="text-gray-800 dark:text-white mb-2">
                 <span className="font-semibold">Date:</span>{" "}
                 {format(new Date(orderedItem.orderTime), "PPP")}
               </p>
-              <p className="text-gray-800 mb-2">
+              <p className="text-gray-800 dark:text-white mb-2">
                 <span className="font-semibold">Total Amount:</span>{" "}
                 <span className="text-green-600 font-semibold">
                   ${orderedItem.discountedAmount.toFixed(2)}
                 </span>
               </p>
-              <p className="text-gray-800 mb-4">
+              <p className="text-[#725523] dark:text-white mb-4">
                 <span className="font-semibold">Status:</span>{" "}
                 <span
                   className={`badge p-3 uppercase text-white ${
@@ -141,13 +141,13 @@ const AdminOrders = () => {
                   id="my_modal_4"
                   className="modal fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center p-4"
                 >
-                  <div className="modal-box w-full max-w-4xl bg-white rounded-lg shadow-lg relative">
+                  <div className="modal-box w-full max-w-4xl dark:bg-dark rounded-lg shadow-lg relative">
                     {/* Close Button */}
                     <button
                       onClick={() =>
                         document.getElementById("my_modal_4").close()
                       }
-                      className="absolute top-4 right-4 text-gray-600 hover:text-gray-900"
+                      className="absolute top-4 right-4 text-gray-600 dark:text-white hover:text-gray-900"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -163,7 +163,7 @@ const AdminOrders = () => {
                       </svg>
                     </button>
 
-                    <h2 className="text-2xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-2xl dark:text-white font-bold text-gray-800 mb-4">
                       Order Details
                     </h2>
 
@@ -171,7 +171,7 @@ const AdminOrders = () => {
                       {orderedItem?.order.map((cartItem) => (
                         <div
                           key={cartItem._id}
-                          className="flex items-center gap-4 bg-gray-100 p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300"
+                          className="flex items-center gap-4 p-4 rounded-lg shadow-md hover:shadow-xl transition duration-300"
                         >
                           <Image
                             src={cartItem.image}
@@ -181,7 +181,7 @@ const AdminOrders = () => {
                             style={{ width: "auto", height: "auto" }}
                             className="w-full sm:w-24 h-auto rounded-lg shadow"
                           />
-                          <div className="text-gray-800">
+                          <div className="text-gray-800 dark:text-white">
                             <h3 className="text-lg font-semibold">
                               {cartItem.name}
                             </h3>

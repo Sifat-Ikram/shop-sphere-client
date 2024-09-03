@@ -13,7 +13,7 @@ const Categories = () => {
   return (
     <section className="my-20">
       <div className="container mx-auto px-4">
-        <h2 className="lg:text-5xl md:text-3xl text-xl  font-bold text-center mb-12 text-gray-800">
+        <h2 className="lg:text-5xl md:text-3xl text-xl dark:text-white font-bold text-center mb-12 text-gray-800">
           Featured Categories
         </h2>
         <Swiper

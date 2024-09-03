@@ -2,9 +2,9 @@ import { FaRocket, FaHandshake, FaLeaf } from "react-icons/fa";
 
 const BrandStory = () => {
   return (
-    <div className="bg-gradient-to-r from-[#725523] to-[#9f7d49]">
+    <div className="bg-gradient-to-r from-[#725523] to-[#9f7d49] dark:bg-dark">
       <main>
-        <section className="py-12">
+        <section className="py-12 dark:bg-dark">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-white mb-4">Our Story</h2>
@@ -16,35 +16,35 @@ const BrandStory = () => {
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-around items-start gap-5">
-              <div className="w-full md:w-1/3 text-center mb-6 md:mb-0 p-6 bg-white shadow-lg rounded-lg transition-transform transform hover:scale-105">
+              <div className="w-full md:w-1/3 text-center mb-6 md:mb-0 p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg transition-transform transform hover:scale-105">
                 <FaRocket className="text-4xl text-[#725523] mb-4 mx-auto" />
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                   Our Mission
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                   Our mission is to revolutionize the industry with cutting-edge
                   solutions and exceptional service. We are dedicated to
                   sustainability and strive to make a positive impact on our
                   community.
                 </p>
               </div>
-              <div className="w-full md:w-1/3 text-center mb-6 md:mb-0 p-6 bg-white shadow-lg rounded-lg transition-transform transform hover:scale-105">
+              <div className="w-full md:w-1/3 text-center mb-6 md:mb-0 p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg transition-transform transform hover:scale-105">
                 <FaHandshake className="text-4xl text-[#725523] mb-4 mx-auto" />
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                   Our Values
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                   We uphold the highest standards of honesty and fairness. Our
                   customers are at the heart of everything we do. We embrace
                   creativity and strive for continuous improvement.
                 </p>
               </div>
-              <div className="w-full md:w-1/3 text-center p-6 bg-white shadow-lg rounded-lg transition-transform transform hover:scale-105">
+              <div className="w-full md:w-1/3 text-center p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg transition-transform transform hover:scale-105">
                 <FaLeaf className="text-4xl text-[#725523] mb-4 mx-auto" />
-                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
                   Why Choose Us
                 </h3>
-                <p className="text-gray-700">
+                <p className="text-gray-700 dark:text-gray-300">
                   We offer exceptional products backed by unparalleled customer
                   service. Our dedication to quality and customer satisfaction
                   makes us a trusted choice for your needs.

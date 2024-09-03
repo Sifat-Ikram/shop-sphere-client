@@ -1,3 +1,4 @@
+import DarkModeButton from "@/components/ui/darkModeButton/DarkModeButton";
 import "./globals.css";
 import ClientProvider from "@/components/clientProvider/ClientProvider";
 
@@ -9,7 +10,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="dark:bg-dark">
         <ClientProvider>{children}</ClientProvider>
       </body>
     </html>

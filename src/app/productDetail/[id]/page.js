@@ -49,12 +49,10 @@ const ProductDetail = () => {
     (rev) => rev.productName === selectedProduct.name
   );
 
-  console.log(selectedReview);
-
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
     const reviewInfo = {
-      email: user.email,
+      email: user?.email,
       username: user?.displayName,
       rating,
       text: reviewText,
@@ -204,8 +202,8 @@ const ProductDetail = () => {
         </div>
         {/* Selected Product Information */}
         <div>
-          <h1 className="text-3xl font-bold mb-4">{selectedProduct.name}</h1>
-          <p className="text-2xl font-bold mb-2">
+          <h1 className="text-3xl dark:text-white font-bold mb-4">{selectedProduct.name}</h1>
+          <p className="text-2xl dark:text-white font-bold mb-2">
             Price: ${selectedProduct.price}
           </p>
           <p
@@ -216,17 +214,17 @@ const ProductDetail = () => {
             {selectedProduct.availability ? "Out of Stock" : "In Stock"}
           </p>
           <div className="mb-4">
-            <h2 className="text-lg font-semibold">Specifications:</h2>
-            <ul className="list-disc pl-5">
+            <h2 className="text-lg font-semibold dark:text-white">Specifications:</h2>
+            <ul className="list-disc pl-5 dark:text-white">
               <li>Brand: {selectedProduct.brand}</li>
               <li>Type: {selectedProduct.type}</li>
               <li>Category: {selectedProduct.category}</li>
             </ul>
           </div>
           <div className="mb-4 flex items-center gap-4">
-            <h2 className="text-lg font-semibold">Overall Rating:</h2>
+            <h2 className="text-lg font-semibold dark:text-white">Overall Rating:</h2>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold">
+              <span className="text-2xl font-bold dark:text-white">
                 {selectedProduct.rating}
               </span>
               <div className="flex ml-2">
@@ -241,13 +239,13 @@ const ProductDetail = () => {
           </div>
           <button
             onClick={() => handleToOrder(selectedProduct)}
-            className="buttons transition duration-300"
+            className="buttons dark:bg-dark dark:border-2 border-white border-solid transition duration-300"
           >
             Add to Cart
           </button>
           <div className="mt-10">
-            <h1 className="text-2xl font-semibold">Share this product</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-x-2 space-y-2  mt-2">
+            <h1 className="text-2xl font-semibold dark:text-white">Share this product</h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-x-2 space-y-2 mt-2">
               <button
                 onClick={handleFacebookShare}
                 className="flex items-center bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition duration-300"
@@ -272,13 +270,13 @@ const ProductDetail = () => {
       </div>
 
       <div className="mb-20">
-        <h2 className="text-2xl font-semibold mb-4">Product Description</h2>
-        <p>{selectedProduct.details}</p>
+        <h2 className="text-2xl font-semibold mb-4 dark:text-white">Product Description</h2>
+        <p className="dark:text-white">{selectedProduct.details}</p>
       </div>
 
       {/* Review Form */}
       <div className="mb-6">
-        <h2 className="text-2xl font-semibold mb-4">Add a Review</h2>
+        <h2 className="text-2xl font-semibold mb-4 dark:text-white">Add a Review</h2>
         <form onSubmit={handleReviewSubmit}>
           <div className="mb-4">
             <textarea
@@ -302,7 +300,7 @@ const ProductDetail = () => {
               ))}
             </div>
           </div>
-          <button type="submit" className="buttons transition duration-300">
+          <button type="submit" className="buttons dark:bg-dark dark:border-2 border-white border-solid transition duration-300">
             Submit Review
           </button>
         </form>
@@ -310,20 +308,20 @@ const ProductDetail = () => {
 
       {/* User Reviews */}
       <div className="mt-10">
-        <h2 className="text-3xl font-bold mb-6 text-[#624108]">Reviews</h2>
+        <h2 className="text-3xl font-bold mb-6 text-[#624108] dark:text-white">Reviews</h2>
         <div className="space-y-6">
           {selectedReview.length > 0 ? (
             selectedReview.map((review, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg p-6 shadow-lg transition-transform transform hover:scale-105 border border-gray-200"
+                className="p-6"
               >
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-semibold text-[#624108]">
+                    <h3 className="text-xl font-semibold dark:text-white text-[#624108]">
                       {review.username}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-gray-600 text-sm dark:text-white">
                       {new Date(review.date).toLocaleDateString()}
                     </p>
                   </div>
@@ -337,31 +335,31 @@ const ProductDetail = () => {
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">{review.text}</p>
+                <p className="text-gray-700 mb-4 dark:text-white">{review.text}</p>
                 <div className="flex mb-5 items-center gap-8">
                   <button
                     onClick={() => handleLike(review._id)}
-                    className="flex items-center text-gray-600 hover:text-[#624108] transition-colors duration-300"
+                    className="flex items-center text-gray-600 dark:text-white hover:text-[#624108] transition-colors duration-300"
                   >
                     <FaThumbsUp className="mr-1" /> {review.likes || 0}
                   </button>
                   <button
                     onClick={() => handleDislike(review._id)}
-                    className="flex items-center text-gray-600 hover:text-red-500 transition-colors duration-300"
+                    className="flex items-center text-gray-600 dark:text-white hover:text-red-500 transition-colors duration-300"
                   >
                     <FaThumbsDown className="mr-1" /> {review.dislikes || 0}
                   </button>
                 </div>
                 <div className="ml-3 mb-4">
-                  <h4 className="text-lg font-semibold text-[#624108]">
+                  <h4 className="text-lg font-semibold text-[#624108] dark:text-white">
                     Replies:
                   </h4>
                   <div className="ml-5 space-y-2">
                     {review.replies && review.replies.length > 0 && (
                       <div className="w-11/12 mx-auto">
                         {review.replies.map((reply) => (
-                          <div key={reply.replyText} className="reply mt-4">
-                            <p>{reply.replyUser || 'Anonymous'}</p>
+                          <div key={reply.replyText} className="reply mt-4 dark:text-white">
+                            <p>{reply.replyUser || "Anonymous"}</p>
                             <p>{reply.replyText}</p>
                             <small>
                               {new Date(reply.createdAt).toLocaleString()}
@@ -374,7 +372,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="flex items-center space-x-6">
                   <details className="flex items-center text-gray-600 group">
-                    <summary className="cursor-pointer flex items-center space-x-1">
+                    <summary className="cursor-pointer dark:text-white flex items-center space-x-1">
                       <span className="font-semibold">Reply</span>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -395,12 +393,12 @@ const ProductDetail = () => {
                       <input
                         type="text"
                         onChange={(e) => setReplyText(e.target.value)}
-                        className="w-full p-2 border rounded-md border-gray-300"
+                        className="w-full p-2 border rounded-md border-gray-300 dark:bg-white"
                         placeholder="Write a reply..."
                       />
                       <button
                         onClick={() => handleReplyText(review._id)}
-                        className="bg-[#725523] hover:bg-[#624108] p-2 text-white rounded-md w-40 transition duration-300"
+                        className="bg-[#725523] hover:bg-[#624108] dark:bg-dark dark:border-2 border-white border-solid p-2 text-white rounded-md w-40 transition duration-300"
                       >
                         Submit Reply
                       </button>
@@ -410,14 +408,14 @@ const ProductDetail = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-600">No reviews yet!</p>
+            <p className="text-center text-gray-600 dark:text-white">No reviews yet!</p>
           )}
         </div>
       </div>
 
       {/* releted product */}
       <div className="my-20">
-        <h1 className="text-4xl font-bold mb-10 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#8d6b31] to-[#624108]">
+        <h1 className="text-4xl font-bold dark:text-white mb-10 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#8d6b31] to-[#624108]">
           Products You May Also Like
         </h1>
         <div>

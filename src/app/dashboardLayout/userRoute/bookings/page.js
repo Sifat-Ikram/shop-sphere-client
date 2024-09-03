@@ -41,7 +41,7 @@ const UserBooking = () => {
 
   return (
     <div className="lg:px-10 px-4 sm:px-6 mt-10">
-      <h1 className="uppercase text-4xl font-bold text-[#624108] text-center mb-8">
+      <h1 className="uppercase text-4xl font-bold text-[#624108] dark:text-white text-center mb-8">
         My Bookings
       </h1>
       <div className="w-full mx-auto">
@@ -49,7 +49,7 @@ const UserBooking = () => {
           {cart?.map((cartItem) => (
             <div
               key={cartItem._id}
-              className="relative rounded-xl cursor-pointer overflow-hidden w-72 max-md:w-4/5 mx-auto py-5 bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
+              className="relative rounded-xl cursor-pointer dark:bg-dark overflow-hidden w-72 max-md:w-4/5 mx-auto py-5 bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
             >
               <div className="flex justify-center mb-4">
                 <Image
@@ -63,14 +63,14 @@ const UserBooking = () => {
               </div>
               <div className="px-5 py-2 flex flex-col z-10 relative">
                 <div className="h-36">
-                  <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-[#624108]">
+                  <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-[#624108] dark:text-white">
                     {cartItem?.name}
                   </h1>
-                  <p className="text-lg text-[#624108]">
-                    <span className="font-bold text-black">Price:</span> $
+                  <p className="text-lg text-[#624108] dark:text-white">
+                    <span className="font-bold text-black dark:text-white">Price:</span> $
                     {cartItem?.price}
                   </p>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 dark:text-white">
                     <span className="text-lg font-bold">Rating:</span>
                     <Rating
                       style={{ maxWidth: 100 }}
@@ -78,8 +78,8 @@ const UserBooking = () => {
                       readOnly
                     />
                   </div>
-                  <p className="text-lg text-[#624108]">
-                    <span className="font-bold text-black">Booked by: </span>
+                  <p className="text-lg text-[#624108] dark:text-white">
+                    <span className="font-bold text-black dark:text-white">Booked by: </span>
                     {cartItem?.username}
                   </p>
                 </div>

@@ -49,21 +49,16 @@ const AdminCart = () => {
 
   return (
     <div className="lg:px-10 px-4 sm:px-6 mt-10">
-      <h1 className="uppercase text-4xl font-bold text-[#624108] text-center mb-8">
+      <h1 className="uppercase text-4xl font-bold dark:text-white text-[#624108] text-center mb-20">
         Cart Management
       </h1>
       <div className="w-full mx-auto">
-        <div className="">
-          <div className="flex justify-between mb-6">
-            <h1 className="text-xl md:text-2xl font-semibold text-[#624108]">
-              Available Cart Product: {cart.length}
-            </h1>
-          </div>
+        <div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {cart.map((cartItem) => (
               <div
                 key={cartItem._id}
-                className="relative rounded-xl cursor-pointer overflow-hidden w-72 max-md:w-4/5 mx-auto py-5 bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
+                className="relative rounded-xl cursor-pointer overflow-hidden w-72 max-md:w-4/5 mx-auto py-5 bg-white dark:bg-dark shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-2"
               >
                 <div className="flex justify-center mb-4">
                   <Image
@@ -77,23 +72,23 @@ const AdminCart = () => {
                 </div>
                 <div className="px-5 py-2 flex flex-col z-10 relative">
                   <div className="h-36">
-                    <h1 className="text-lg md:text-xl lg:text-2xl font-bold text-[#624108]">
+                    <h1 className="text-lg md:text-xl lg:text-2xl dark:text-white font-bold text-[#624108]">
                       {cartItem.name}
                     </h1>
-                    <p className="text-lg text-[#624108]">
-                      <span className="font-bold text-black">Price:</span> $
+                    <p className="text-lg text-[#624108] dark:text-white">
+                      <span className="font-bold text-black dark:text-white">Price:</span> $
                       {cartItem.price}
                     </p>
                     <div className="flex items-center gap-2">
-                      <span className="text-lg font-bold">Rating:</span>
+                      <span className="text-lg font-bold dark:text-white">Rating:</span>
                       <Rating
                         style={{ maxWidth: 100 }}
                         value={cartItem.rating}
                         readOnly
                       />
                     </div>
-                    <p className="text-lg text-[#624108]">
-                      <span className="font-bold text-black">Booked by: </span>
+                    <p className="text-lg dark:text-white">
+                      <span className="font-bold dark:text-white">Booked by: </span>
                       {cartItem?.username}
                     </p>
                   </div>
@@ -105,7 +100,7 @@ const AdminCart = () => {
                       <MdDelete size={20} /> DELETE
                     </button>
                     <Link href={`/productDetail/${cartItem.productId}`}>
-                      <button className="flex justify-center items-center gap-2 px-4 py-2 text-white bg-[#725523] hover:bg-[#624108] rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
+                      <button className="flex justify-center items-center gap-2 buttons">
                         View Details
                       </button>
                     </Link>

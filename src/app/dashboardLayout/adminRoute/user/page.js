@@ -74,13 +74,13 @@ const User = () => {
 
   return (
     <div className="lg:px-20 mt-20">
-      <h1 className="uppercase text-4xl font-bold text-[#624108] text-center">
+      <h1 className="uppercase text-4xl font-bold text-[#624108] dark:text-white text-center">
         Users
       </h1>
       <div className="w-11/12 mx-auto">
         <div className="p-2 mt-10">
           <div className="flex justify-between">
-            <h1 className="text-xl font-semibold uppercase text-center">
+            <h1 className="text-xl font-semibold dark:text-white uppercase text-center">
               Total Users: {user.length}
             </h1>
           </div>

@@ -42,16 +42,16 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10">
+    <div className="min-h-screen py-10">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="md:text-3xl sm:text-xl text-lg text-center font-bold text-[#624108] mb-6">
+        <div className="p-8">
+          <h1 className="md:text-3xl sm:text-xl dark:text-white text-lg text-center font-bold text-[#624108] mb-6">
             Add New Product
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-8 mb-10">
               <div className="md:w-3/5 mx-auto">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                   Upload Image
                 </label>
                 <input
@@ -64,12 +64,12 @@ const AddProduct = () => {
                   } focus:ring-2 focus:ring-blue-500`}
                 />
                 {errors.image && (
-                  <p className="text-red-500 text-sm">{errors.image.message}</p>
+                  <p className="text-red-400 text-sm">{errors.image.message}</p>
                 )}
               </div>
               <div className="md:flex justify-between items-center gap-5 max-md:space-y-8">
                 <div className="md:w-1/2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                     Product Name
                   </label>
                   <input
@@ -88,7 +88,7 @@ const AddProduct = () => {
                   )}
                 </div>
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                     Product Category
                   </label>
                   <input
@@ -111,7 +111,7 @@ const AddProduct = () => {
               </div>
               <div className="md:flex justify-between items-center gap-5 max-md:space-y-8">
                 <div className="md:w-1/2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                     Product Type
                   </label>
                   <input
@@ -130,7 +130,7 @@ const AddProduct = () => {
                   )}
                 </div>
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                     Product Brand
                   </label>
                   <input
@@ -151,7 +151,7 @@ const AddProduct = () => {
               </div>
               <div className="md:flex justify-between items-center gap-5 max-md:space-y-8">
                 <div className="md:w-1/2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                     Product Price
                   </label>
                   <input
@@ -170,7 +170,7 @@ const AddProduct = () => {
                   )}
                 </div>
                 <div className="flex-1">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                     Product Rating
                   </label>
                   <input
@@ -192,7 +192,7 @@ const AddProduct = () => {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block dark:text-white text-sm font-medium text-gray-700 mb-2">
                   Product Description
                 </label>
                 <textarea
@@ -215,7 +215,7 @@ const AddProduct = () => {
             </div>
             <button
               type="submit"
-              className="w-full buttons focus:outline-none focus:ring-2 focus:ring-[#624108]"
+              className="w-full buttons dark:bg-dark dark:text-white dark:border-2 border-solid border-white focus:ring-2 focus:ring-[#624108]"
             >
               Add Product
             </button>

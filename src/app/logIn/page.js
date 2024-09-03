@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import sign from "../../assets/sign/sign.png";
+import sign from "../../assets/sign/authentication.gif";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/components/provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -44,13 +44,13 @@ const SignIn = () => {
       </div>
       <div className="flex-col hero-content md:w-1/2 w-11/12 max-md:mx-auto shadow-2xl p-8">
         <div className="text-center w-full">
-          <h1 className="text-5xl font-bold text-[#624108]">Sign in here!</h1>
+          <h1 className="text-5xl font-bold dark:text-white text-[#624108]">Sign in here!</h1>
         </div>
         <div className="w-full card shrink-0">
           <form onSubmit={handleSubmit} className="w-4/5 mx-auto space-y-3">
             <div>
               <label className="label">
-                <span className="label-text">Email</span>
+                <span className="label-text dark:text-white">Email</span>
               </label>
               <input
                 name="email"
@@ -61,7 +61,7 @@ const SignIn = () => {
             </div>
             <div>
               <label className="label">
-                <span className="label-text">Password</span>
+                <span className="label-text dark:text-white">Password</span>
               </label>
               <input
                 name="password"
@@ -71,17 +71,17 @@ const SignIn = () => {
               />
             </div>
             <div>
-              <button type="submit" className="buttons w-full text-lg">
+              <button type="submit" className="buttons dark:bg-dark dark:border-2 border-solid border-white dark:text-white w-full text-lg">
                 Sign in
               </button>
             </div>
             {error && <div className="text-red-500 mt-2">{error}</div>}
           </form>
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center mt-4 dark:text-white">
             <Link href="/register">
               <p>
                 Do not have an account?{" "}
-                <span className="text-[#624108] font-semibold">Sign up</span>{" "}
+                <span className="text-[#624108] dark:text-white font-semibold">Sign up</span>{" "}
                 here
               </p>
             </Link>
