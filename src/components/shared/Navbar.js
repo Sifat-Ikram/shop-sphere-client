@@ -49,7 +49,7 @@ const Navbar = () => {
         <Link
           href="/"
           className={`font-semibold hover:bg-[#624108] ${
-            activeSegment === null ? "bg-white text-[#624108]" : "text-white"
+            activeSegment === "Home" ? "bg-white text-[#624108]" : "text-white"
           }`}
         >
           Home
@@ -65,22 +65,6 @@ const Navbar = () => {
           }`}
         >
           Products
-        </Link>
-      </li>
-      <li>
-        <Link
-          href={
-            isAdmin
-              ? "/dashboardLayout/adminRoute/adminHome"
-              : "/dashboardLayout/userRoute/userHome"
-          }
-          className={`font-semibold hover:bg-[#624108] ${
-            activeSegment === (isAdmin ? "adminHome" : "userHome")
-              ? "bg-white text-[#624108]"
-              : "text-white"
-          }`}
-        >
-          Dashboard
         </Link>
       </li>
       <li>
@@ -126,21 +110,31 @@ const Navbar = () => {
 
   const navButton = (
     <>
-      <Link href={"/register"} className="flex justify-center items-center">
-        <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
-          Sign up
-        </button>
-      </Link>
-      <Link href={"/logIn"} className="flex justify-center items-center">
-        <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
-          Sign in
-        </button>
-      </Link>
+      <li>
+        <Link
+          href={"/register"}
+          className="flex justify-center w-full items-center"
+        >
+          <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
+            Sign up
+          </button>
+        </Link>
+      </li>
+      <li>
+        <Link
+          href={"/logIn"}
+          className="flex justify-center w-full items-center"
+        >
+          <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
+            Sign in
+          </button>
+        </Link>
+      </li>
     </>
   );
 
   return (
-    <div className="navbar bg-[#725523] px-4 sm:px-10 py-4 shadow-lg dark:bg-dark">
+    <div className="navbar bg-[#725523] px-4 sm:px-10 py-4 shadow z-10 mb-20 dark:bg-dark fixed">
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -176,88 +170,113 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end space-x-2">
-        {user ? (
-          <div className="dropdown dropdown-end relative">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="rounded-full bg-white overflow-hidden border border-gray-200">
-                {currentUser?.photoUrl ? (
-                  <Image
-                    src={currentUser?.photoUrl}
-                    alt="user image"
-                    height={40}
-                    width={40}
-                    className="object-cover"
-                  />
-                ) : (
-                  <BsFillPersonFill className="text-4xl text-[#624108] dark:text-white p-2" />
-                )}
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
-            >
-              <div className="hover:bg-[#8c5d2f] px-4 py-2 rounded-md transition duration-200 ease-in-out">
-                <h1>
-                  <span className="block uppercase text-center text-xl font-medium">
-                    {currentUser?.name}
-                  </span>
-                </h1>
-                <h1>
-                  <span className="block text-center text-lg">
-                    {currentUser?.email}
-                  </span>
-                </h1>
-              </div>
-              <li className="hover:bg-[#8c5d2f] cursor-pointer rounded-md transition duration-200 ease-in-out">
-                <button
-                  className="w-full text-center px-4 py-2 text-sm font-medium"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleLogOut();
-                  }}
-                >
-                  Sign Out
-                </button>
-              </li>
-            </ul>
-          </div>
-        ) : (
-          <div className="dropdown dropdown-end relative">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle avatar"
-            >
-              <div className="rounded-full bg-white dark:bg-dark overflow-hidden border border-gray-200">
-                {currentUser?.photoUrl ? (
-                  <Image
-                    src={currentUser?.photoUrl}
-                    alt="user image"
-                    height={40}
-                    width={40}
-                    className="object-cover"
-                  />
-                ) : (
-                  <BsFillPersonFill className="text-4xl text-[#624108] dark:text-white p-2" />
-                )}
-              </div>
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
-            >
-              <div className="flex flex-col justify-center items-center gap-2">
-                {navButton}
-              </div>
-            </ul>
-          </div>
-        )}
         <div>
+          {user ? (
+            <div className="dropdown dropdown-end relative">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="rounded-full bg-white overflow-hidden border border-gray-200">
+                  {currentUser?.photoUrl ? (
+                    <Image
+                      src={currentUser?.photoUrl}
+                      alt="user image"
+                      height={40}
+                      width={40}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <BsFillPersonFill className="text-4xl text-[#624108] dark:text-white p-2" />
+                  )}
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content absolute bg-[#624108] space-y-3 dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 py-2 px-5 z-50"
+              >
+                <div className="px-4 py-2 mb-5 rounded-md transition duration-200 ease-in-out">
+                  <h1>
+                    <span className="block uppercase text-center text-xl font-medium">
+                      {currentUser?.name}
+                    </span>
+                  </h1>
+                  <h1>
+                    <span className="block text-center text-lg">
+                      {currentUser?.email}
+                    </span>
+                  </h1>
+                </div>
+                <li className="hover:bg-[#8c5d2f] flex py-2 rounded-md justify-center dark:text-white">
+                  <Link href={`/myProfile/${currentUser?._id}`}>My Profile</Link>
+                </li>
+                <li className="flex justify-center">
+                  <Link
+                    href={
+                      isAdmin
+                        ? "/dashboardLayout/adminRoute/adminHome"
+                        : "/dashboardLayout/userRoute/userHome"
+                    }
+                    className={`font-semibold rounded-md hover:bg-[#8c5d2f] w-full py-2 text-center ${
+                      activeSegment === (isAdmin ? "adminHome" : "userHome")
+                        ? "bg-white text-[#624108]"
+                        : "text-white"
+                    }`}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li className="hover:bg-[#8c5d2f] rounded-md cursor-pointer transition duration-200 ease-in-out">
+                  <button
+                    className="w-full text-center px-4 py-2 text-sm font-medium"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleLogOut();
+                    }}
+                  >
+                    Sign Out
+                  </button>
+                </li>
+                <li className="flex justify-center rounded-md md:hidden hover:bg-[#8c5d2f]">
+                  <DarkModeButton />
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="dropdown dropdown-end relative">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="rounded-full bg-white dark:bg-dark overflow-hidden border border-gray-200">
+                  {currentUser?.photoUrl ? (
+                    <Image
+                      src={currentUser?.photoUrl}
+                      alt="user image"
+                      height={40}
+                      width={40}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <BsFillPersonFill className="text-4xl text-[#624108] dark:text-white p-2" />
+                  )}
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
+              >
+                {navButton}
+                <li className="flex justify-center md:hidden">
+                  <DarkModeButton />
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
+        <div className="max-md:hidden">
           <DarkModeButton />
         </div>
       </div>

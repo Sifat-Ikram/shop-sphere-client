@@ -9,11 +9,7 @@ const queryClient = new QueryClient();
 export default function ClientProvider({ children }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <Navbar />
-        {children}
-        <Footer />
-      </AuthProvider>
+      <AuthProvider>{children}</AuthProvider>
     </QueryClientProvider>
   );
 }

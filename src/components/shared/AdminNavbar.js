@@ -8,7 +8,7 @@ import { MdDashboard, MdDomainAdd } from "react-icons/md";
 import useAdmin from "../hooks/useAdmin";
 
 const AdminNavbar = () => {
-  const [isAdmin, IsAdminLoading] = useAdmin();
+  const [isAdmin] = useAdmin();
   const pathname = usePathname();
 
   const adminNavList = (

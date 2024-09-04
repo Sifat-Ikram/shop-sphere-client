@@ -32,7 +32,7 @@ const DarkModeButton = () => {
       rounded-full shadow-md transform transition-transform duration-300"
         style={darkMode ? { left: "2px" } : { right: "2px" }}
       ></div>
-      <BsSunFill className="ml-auto text-[#725523] dark:text-white" />
+      <BsSunFill className="ml-auto dark:text-white" />
     </div>
   );
 };

@@ -149,8 +149,8 @@ const UserOrders = () => {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-center items-center mt-40 gap-20">
-          <h1 className="text-7xl font-bold">There is no order yet!!!</h1>
+        <div className="flex flex-col justify-center items-center mt-40 gap-14 md:gap-20">
+          <h1 className="lg:text-7xl md:text-5xl text-center text-3xl font-bold">There is no order yet!!!</h1>
           <Link href={"/shop"}>
             <button className="py-3 px-10 text-2xl font-semibold text-white bg-[#725523] hover:bg-[#624108] rounded-lg shadow-md hover:shadow-lg transition-transform transform hover:scale-105">
               Make Order
