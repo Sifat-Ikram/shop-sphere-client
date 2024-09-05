@@ -49,10 +49,10 @@ const Categories = () => {
                   <Image
                     src={cat.image}
                     alt={cat.name}
-                    layout="fill"
-                    objectFit="cover"
+                    fill={true}
                     className="transition-transform duration-300 ease-in-out group-hover:scale-110"
                     style={{ objectPosition: "center" }}
+                    priority={true}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent flex items-center justify-center p-4">
                     <h3 className="text-gray-100 text-2xl font-bold text-center shadow-md">

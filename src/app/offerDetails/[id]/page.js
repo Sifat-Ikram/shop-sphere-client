@@ -46,7 +46,7 @@ const OfferDetails = () => {
   return (
     <div>
       <Navbar />
-      <div className="relative">
+      <div className="relative pt-20">
         <div
           className="hero relative w-full overflow-hidden"
           style={{

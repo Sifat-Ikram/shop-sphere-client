@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <div>
       <Navbar />
-      <main>
+      <main className="pt-20">
         <Banner />
         <Categories />
         <TrendingItems />

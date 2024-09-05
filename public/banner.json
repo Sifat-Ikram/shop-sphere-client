@@ -1,0 +1,32 @@
+[
+    {
+        "title": "New Arrivals",
+        "text": "Discover the latest trends with our newest collection",
+        "img": "https://i.ibb.co/fvQgkFw/image3.png"
+    },
+    {
+        "title": "Summer Sale Extravaganza!",
+        "text": "Up to 50% off on selected items. Grab your favorites before they're gone!",
+        "img": "https://i.ibb.co/tKvDqFK/summer.png"
+    },
+    {
+        "title": "Winter Wonderland",
+        "text": "Cozy up with our winter collection. Warm styles for the chilly days ahead",
+        "img": "https://i.ibb.co/7XW6kK2/winter.jpg"
+    },
+    {
+        "title": "Holiday Gift Guide",
+        "text": "Find the perfect gifts for everyone on your list",
+        "img": "https://i.ibb.co/WVgmKc9/gift.png"
+    },
+    {
+        "title": "Home Decor Deals",
+        "text": "Transform your space with our stunning home decor collection. Sale ends soon!",
+        "img": "https://i.ibb.co/SVSgmzZ/home-decor.webp"
+    },
+    {
+        "title": "Fitness Gear",
+        "text": "Get fit with our range of fitness equipment and apparel. Start your journey today",
+        "img": "https://i.ibb.co/b3yncQ6/fitness.jpg"
+    }
+]

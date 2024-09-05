@@ -79,7 +79,7 @@ const AllProducts = () => {
   return (
     <div>
       <Navbar />
-      <div className="mb-16">
+      <div className="mb-16 pt-20">
         {/* Cover Component */}
         <div id="cover" className="w-full">
           <Cover

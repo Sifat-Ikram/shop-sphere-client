@@ -48,7 +48,7 @@ const Navbar = () => {
       <li>
         <Link
           href="/"
-          className={`font-semibold hover:bg-[#624108] ${
+          className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black ${
             activeSegment === "Home" ? "bg-white text-[#624108]" : "text-white"
           }`}
         >
@@ -58,7 +58,7 @@ const Navbar = () => {
       <li>
         <Link
           href="/allProducts"
-          className={`font-semibold hover:bg-[#624108] ${
+          className={`font-semibold dark:hover:bg-white dark:text-white dark:hover:text-black hover:bg-[#624108] ${
             activeSegment === "allProducts"
               ? "bg-white text-[#624108]"
               : "text-white"
@@ -68,25 +68,19 @@ const Navbar = () => {
         </Link>
       </li>
       <li>
-        {user && (
-          <>
-            <Link
-              href="/shop"
-              className={`font-semibold hover:bg-[#624108] ${
-                activeSegment === "shop"
-                  ? "bg-white text-[#624108]"
-                  : "text-white"
-              }`}
-            >
-              Shop
-            </Link>
-          </>
-        )}
+        <Link
+          href={user ? "/shop" : "/login"}
+          className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black ${
+            activeSegment === "shop" ? "bg-white text-[#624108]" : "text-white"
+          }`}
+        >
+          Shop
+        </Link>
       </li>
       <li>
         <Link
           href="/about"
-          className={`font-semibold hover:bg-[#624108] ${
+          className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black md:hidden ${
             activeSegment === "about" ? "bg-white text-[#624108]" : "text-white"
           }`}
         >
@@ -96,7 +90,7 @@ const Navbar = () => {
       <li>
         <Link
           href="/contact"
-          className={`font-semibold hover:bg-[#624108] ${
+          className={`font-semibold hover:bg-[#624108] md:hidden ${
             activeSegment === "contact"
               ? "bg-white text-[#624108]"
               : "text-white"
@@ -115,7 +109,7 @@ const Navbar = () => {
           href={"/register"}
           className="flex justify-center w-full items-center"
         >
-          <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
+          <button className="text-white hover:bg-[#8c5d2f] dark:hover:bg-white dark:text-white dark:hover:text-black hover:text-white px-16 py-2 rounded-md w-full">
             Sign up
           </button>
         </Link>
@@ -125,7 +119,7 @@ const Navbar = () => {
           href={"/logIn"}
           className="flex justify-center w-full items-center"
         >
-          <button className="text-white hover:bg-white hover:text-[#624108] px-16 py-2 rounded-md w-full">
+          <button className="text-white hover:bg-[#8c5d2f] dark:hover:bg-white dark:text-white dark:hover:text-black hover:text-white px-16 py-2 rounded-md w-full">
             Sign in
           </button>
         </Link>
@@ -155,7 +149,7 @@ const Navbar = () => {
           </button>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-[#725523] rounded-box mt-3 w-52 p-2 shadow z-50"
+            className="menu menu-sm dropdown-content bg-[#725523] dark:bg-dark rounded-box mt-3 w-44 p-2 shadow z-50"
           >
             {navList}
           </ul>
@@ -164,12 +158,10 @@ const Navbar = () => {
           ShopSphere
         </a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 space-x-2 sm:space-x-4">
+      <div className="navbar-end space-x-2">
+        <ul className="menu menu-horizontal max-md:hidden px-1 space-x-2 sm:space-x-4">
           {navList}
         </ul>
-      </div>
-      <div className="navbar-end space-x-2">
         <div>
           {user ? (
             <div className="dropdown dropdown-end relative">
@@ -194,9 +186,9 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content absolute bg-[#624108] space-y-3 dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 py-2 px-5 z-50"
+                className="dropdown-content absolute bg-[#725523] space-y-3 dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-60 py-2 px-5 z-50"
               >
-                <div className="px-4 py-2 mb-5 rounded-md transition duration-200 ease-in-out">
+                <div className="px-4 py-2 mb-5 rounded-md dark:text-white transition duration-200 ease-in-out">
                   <h1>
                     <span className="block uppercase text-center text-xl font-medium">
                       {currentUser?.name}
@@ -208,8 +200,10 @@ const Navbar = () => {
                     </span>
                   </h1>
                 </div>
-                <li className="hover:bg-[#8c5d2f] flex py-2 rounded-md justify-center dark:text-white">
-                  <Link href={`/myProfile/${currentUser?._id}`}>My Profile</Link>
+                <li className="hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black flex py-2 rounded-md justify-center">
+                  <Link href={`/myProfile/${currentUser?._id}`}>
+                    My Profile
+                  </Link>
                 </li>
                 <li className="flex justify-center">
                   <Link
@@ -218,7 +212,7 @@ const Navbar = () => {
                         ? "/dashboardLayout/adminRoute/adminHome"
                         : "/dashboardLayout/userRoute/userHome"
                     }
-                    className={`font-semibold rounded-md hover:bg-[#8c5d2f] w-full py-2 text-center ${
+                    className={`font-semibold rounded-md hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black w-full py-2 text-center ${
                       activeSegment === (isAdmin ? "adminHome" : "userHome")
                         ? "bg-white text-[#624108]"
                         : "text-white"
@@ -227,7 +221,31 @@ const Navbar = () => {
                     Dashboard
                   </Link>
                 </li>
-                <li className="hover:bg-[#8c5d2f] rounded-md cursor-pointer transition duration-200 ease-in-out">
+                <li>
+                  <Link
+                    href="/about"
+                    className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black flex justify-center p-2 rounded-md ${
+                      activeSegment === "about"
+                        ? "bg-white text-[#624108]"
+                        : "text-white"
+                    }`}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black flex justify-center p-2 rounded-md ${
+                      activeSegment === "contact"
+                        ? "bg-white text-[#624108]"
+                        : "text-white"
+                    }`}
+                  >
+                    Contact
+                  </Link>
+                </li>
+                <li className="hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black rounded-md cursor-pointer transition duration-200 ease-in-out">
                   <button
                     className="w-full text-center px-4 py-2 text-sm font-medium"
                     onClick={(e) => {
@@ -238,7 +256,7 @@ const Navbar = () => {
                     Sign Out
                   </button>
                 </li>
-                <li className="flex justify-center rounded-md md:hidden hover:bg-[#8c5d2f]">
+                <li className="flex justify-center rounded-md">
                   <DarkModeButton />
                 </li>
               </ul>
@@ -266,18 +284,64 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg mt-2 w-56 p-2 z-50"
+                className="dropdown-content absolute bg-[#624108] dark:bg-dark text-white rounded-lg shadow-lg space-y-1 mt-2 w-56 p-2 z-50"
               >
+                <li className="hover:bg-[#8c5d2f] dark:hover:bg-white dark:text-white dark:hover:text-black flex py-2 rounded-md justify-center">
+                  <Link
+                    href={user ? `/myProfile/${currentUser?._id}` : "/logIn"}
+                  >
+                    My Profile
+                  </Link>
+                </li>
+                <li className="flex justify-center">
+                  <Link
+                    href={
+                      user
+                        ? isAdmin
+                          ? "/dashboardLayout/adminRoute/adminHome"
+                          : "/dashboardLayout/userRoute/userHome"
+                        : "/logIn"
+                    }
+                    className={`font-semibold rounded-md hover:bg-[#8c5d2f] dark:hover:bg-white dark:text-white dark:hover:text-black w-full py-2 text-center ${
+                      activeSegment === (isAdmin ? "adminHome" : "userHome")
+                        ? "bg-white text-[#624108]"
+                        : "text-white"
+                    }`}
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black w-full flex justify-center p-2 rounded-md ${
+                      activeSegment === "about"
+                        ? "bg-white text-[#624108]"
+                        : "text-white"
+                    }`}
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/contact"
+                    className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black w-full flex justify-center p-2 rounded-md ${
+                      activeSegment === "contact"
+                        ? "bg-white text-[#624108]"
+                        : "text-white"
+                    }`}
+                  >
+                    Contact
+                  </Link>
+                </li>
                 {navButton}
-                <li className="flex justify-center md:hidden">
+                <li className="flex justify-center">
                   <DarkModeButton />
                 </li>
               </ul>
             </div>
           )}
-        </div>
-        <div className="max-md:hidden">
-          <DarkModeButton />
         </div>
       </div>
     </div>

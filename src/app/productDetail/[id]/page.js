@@ -22,7 +22,6 @@ import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
 import useCart from "@/components/hooks/useCart";
 import useReviews from "@/components/hooks/useReviews";
-import axios from "axios";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 
@@ -192,7 +191,7 @@ const ProductDetail = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl mx-auto px-6 pt-32">
         <div className="flex max-md:flex-col justify-between gap-10 mb-6 max-sm:w-11/12 mx-auto">
           {/* Image Gallery */}
           <div>

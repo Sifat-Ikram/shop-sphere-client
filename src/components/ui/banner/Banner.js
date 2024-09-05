@@ -12,10 +12,26 @@ import summer from "../../../assets/banner/summer.png";
 import winter from "../../../assets/banner/winter.jpg";
 import decor from "../../../assets/banner/home-decor.webp";
 import fitness from "../../../assets/banner/fitness.jpg";
+import useAxiosPublic from "@/components/hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Banner = () => {
+  const axiosPublic = useAxiosPublic();
+  const { data: banner = [] } = useQuery({
+    queryKey: ["banner"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/banner");
+      return res.data;
+    },
+    onError: (err) => {
+      console.error("Error fetching banner data:", err);
+    },
+  });
+
+  console.log(banner);
+
   return (
-    <div className="w-full">
+    <div className="w-full pt-5">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -24,7 +40,6 @@ const Banner = () => {
           disableOnInteraction: false,
         }}
         slidesPerView={1}
-        loop={true}
         modules={[Autoplay]}
         className="mySwiper"
       >

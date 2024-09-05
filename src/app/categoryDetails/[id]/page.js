@@ -39,7 +39,7 @@ const CategoryDetails = () => {
   return (
     <div>
       <Navbar />
-      <div className="pb-10">
+      <div className="pb-10 pt-20">
         {/* Hero Section */}
         <div
           className="relative w-full overflow-hidden"

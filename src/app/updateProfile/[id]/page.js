@@ -4,7 +4,6 @@ import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";

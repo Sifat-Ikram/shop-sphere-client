@@ -202,7 +202,7 @@ const Shop = () => {
   return (
     <div>
       <Navbar />
-      <div className="md:flex justify-center gap-5 md:px-5 px-2 py-5">
+      <div className="md:flex justify-center gap-5 md:px-5 px-2 pt-20 pb-5">
         <div className="md:w-3/5 lg:py-20 sm:py-14 py-10">
           {/* <div className="sm:flex justify-between items-center gap-8 mb-8">
           <div className="md:w-3/5">

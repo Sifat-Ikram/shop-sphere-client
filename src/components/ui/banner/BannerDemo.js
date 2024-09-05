@@ -4,29 +4,30 @@ import Link from "next/link";
 const BannerDemo = ({ title, text, img, background }) => {
   return (
     <div
-      className="flex justify-center max-md:flex-col-reverse items-center gap-20 py-10"
+      className="w-11/12 mx-auto flex flex-row justify-center items-center gap-2 md:gap-20"
       style={{ background: background }}
     >
-      <div className="md:w-1/2 flex flex-col justify-center items-center text-center px-16 py-10 md:mb-0">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 dark:text-white">
+      <div className="w-1/2 flex flex-col justify-center items-center text-center px-1 md:px-16 py-6 md:py-10">
+        <h1 className="text-sm md:text-4xl font-bold mb-2 md:mb-4 dark:text-white">
           {title}
         </h1>
-        <p className="text-base sm:text-lg md:text-2xl mb-6 dark:text-white">
+        <p className="text-[8px] md:text-2xl mb-4 md:mb-6 dark:text-white">
           {text}
         </p>
         <Link href={"/allProducts"}>
-          <button className="buttons">Shop Now</button>
+          <button className="buttons text-xs font-semibold">Shop Now</button>
         </Link>
       </div>
-      <div className="flex-1 flex justify-center md:pr-20">
+      <div className="w-1/2 flex-1 justify-center">
         <Image
           src={img}
           alt="banner"
-          width={"auto"}
-          height={"auto"}
-          className="rounded-lg w-full h-[400px]"
+          width={500}
+          height={400}
+          className="rounded-lg w-full md:h-[400px] object-cover"
           priority
-          style={{ height: "400px" }}
+          quality={100}
+          sizes="auto"
         />
       </div>
     </div>

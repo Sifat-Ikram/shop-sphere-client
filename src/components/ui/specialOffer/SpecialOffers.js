@@ -52,9 +52,9 @@ const SpecialOffers = () => {
                   <Image
                     src={offer.image}
                     alt={offer.name}
-                    layout="fill"
-                    objectFit="cover"
+                    fill={true}
                     className="w-full h-full transition-transform duration-500 group-hover:scale-110"
+                    style={{ objectPosition: "center" }}
                   />
                 </div>
               </Link>

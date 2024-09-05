@@ -16,7 +16,6 @@ const NewArrivals = () => {
   const selectedProduct = product.filter(
     (productItem) => productItem.type === "Others"
   );
-  console.log(selectedProduct);
 
   return (
     <section className="py-12 mt-8">
@@ -25,7 +24,7 @@ const NewArrivals = () => {
           <h2 className="text-3xl md:text-5xl font-extrabold dark:text-white text-gray-900">
             New Arrivals
           </h2>
-          <p className="text-gray-600 text-base md:text-xl dark:text-white w-3/5 mx-auto leading-relaxed">
+          <p className="text-gray-600 text-xs md:text-xl dark:text-white w-3/5 mx-auto leading-relaxed">
             Discover the latest additions to our collection. Find your next
             favorite product from our handpicked selection of new arrivals.
             Swipe through and explore now!
@@ -56,7 +55,7 @@ const NewArrivals = () => {
             {selectedProduct.map((product) => (
               <SwiperSlide key={product._id} className="px-2">
                 <Link href={`/productDetail/${product._id}`}>
-                  <div className="flex items-center border-[1px] border-solid dark:border-white border-[#624108] h-32 rounded-lg overflow-hidden duration-300">
+                  <div className="flex items-center border-[1px] border-solid dark:border-white border-[#624108] h-32 rounded-lg overflow-hidden transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 animate-fadeIn">
                     <Image
                       src={product.image}
                       alt={product.name}
