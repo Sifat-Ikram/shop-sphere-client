@@ -136,7 +136,7 @@ const AdminNavbar = () => {
   );
 
   return (
-    <div className="bg-[#725523] dark:bg-dark w-full fixed md:left-0 max-md:top-0 z-10 md:w-40 lg:w-72 md:min-h-screen">
+    <div className="bg-[#725523] dark:bg-dark border-r-2 border-solid dark:border-white w-full fixed shadow md:left-0 max-md:top-0 z-10 md:w-40 lg:w-72 md:min-h-screen">
       <div className="md:my-10 flex justify-between md:justify-center items-center max-md:px-8 max-md:py-5">
         <Link href={"/"}>
           <h1 className="text-center text-xl uppercase lg:text-3xl font-bold text-white">

@@ -69,7 +69,7 @@ const Navbar = () => {
       </li>
       <li>
         <Link
-          href={user ? "/shop" : "/login"}
+          href={user ? "/shop" : "/logIn"}
           className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black ${
             activeSegment === "shop" ? "bg-white text-[#624108]" : "text-white"
           }`}

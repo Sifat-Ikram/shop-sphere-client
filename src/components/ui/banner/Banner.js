@@ -6,29 +6,10 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import BannerDemo from "./BannerDemo";
-import img2 from "../../../assets/banner/image3.png";
-import gift from "../../../assets/banner/gift.png";
-import summer from "../../../assets/banner/summer.png";
-import winter from "../../../assets/banner/winter.jpg";
-import decor from "../../../assets/banner/home-decor.webp";
-import fitness from "../../../assets/banner/fitness.jpg";
-import useAxiosPublic from "@/components/hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
+import useBanner from "@/components/hooks/useBanner";
 
 const Banner = () => {
-  const axiosPublic = useAxiosPublic();
-  const { data: banner = [] } = useQuery({
-    queryKey: ["banner"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/banner");
-      return res.data;
-    },
-    onError: (err) => {
-      console.error("Error fetching banner data:", err);
-    },
-  });
-
-  console.log(banner);
+  const [banners] = useBanner();
 
   return (
     <div className="w-full pt-5">
@@ -43,14 +24,24 @@ const Banner = () => {
         modules={[Autoplay]}
         className="mySwiper"
       >
-        <SwiperSlide>
-          <BannerDemo
-            title={"New Arrivals"}
-            text={"Discover the latest trends with our newest collection"}
-            img={img2}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
+        {banners?.map((bannerItem) => (
+          <SwiperSlide key={bannerItem._id}>
+            <BannerDemo
+              title={bannerItem.title}
+              text={bannerItem.text}
+              img={bannerItem.img}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
+};
+
+export default Banner;
+
+{
+  /* <SwiperSlide>
           <BannerDemo
             title={"Summer Sale Extravaganza!"}
             text={
@@ -92,10 +83,5 @@ const Banner = () => {
             }
             img={fitness}
           />
-        </SwiperSlide>
-      </Swiper>
-    </div>
-  );
-};
-
-export default Banner;
+        </SwiperSlide> */
+}

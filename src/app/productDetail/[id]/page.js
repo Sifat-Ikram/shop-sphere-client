@@ -100,7 +100,6 @@ const ProductDetail = () => {
         timer: 1000,
       });
     } else {
-      // If the item is not in the cart, proceed to add it
       const cartItem = {
         productId: item._id,
         email: user.email,
@@ -112,6 +111,7 @@ const ProductDetail = () => {
         brand: item.brand,
         type: item.type,
         details: item.details,
+        status: "pending"
       };
 
       axiosPublic.post("/cart", cartItem).then((res) => {

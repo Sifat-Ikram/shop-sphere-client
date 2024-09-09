@@ -11,11 +11,11 @@ const BannerDemo = ({ title, text, img, background }) => {
         <h1 className="text-sm md:text-4xl font-bold mb-2 md:mb-4 dark:text-white">
           {title}
         </h1>
-        <p className="text-[8px] md:text-2xl mb-4 md:mb-6 dark:text-white">
+        <p className="text-[8px] sm:text-xs md:text-2xl mb-4 md:mb-6 dark:text-white">
           {text}
         </p>
         <Link href={"/allProducts"}>
-          <button className="buttons text-xs font-semibold">Shop Now</button>
+          <button className="px-3 py-2 md:px-8 md:py-3 rounded-md bg-[#725523] text-white text-xs md:text-lg font-medium md:font-semibold">Shop Now</button>
         </Link>
       </div>
       <div className="w-1/2 flex-1 justify-center">

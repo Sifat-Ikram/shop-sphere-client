@@ -8,11 +8,17 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignIn = () => {
   const { signIn } = useContext(AuthContext);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,16 +69,22 @@ const SignIn = () => {
                   className="input input-bordered w-full"
                 />
               </div>
-              <div>
+              <div className="relative">
                 <label className="label">
                   <span className="label-text dark:text-white">Password</span>
                 </label>
                 <input
                   name="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className="w-full input input-bordered"
                 />
+                <div
+                  className="absolute right-3 bottom-4 cursor-pointer text-gray-500"
+                  onClick={togglePasswordVisibility}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </div>
               </div>
               <div>
                 <button

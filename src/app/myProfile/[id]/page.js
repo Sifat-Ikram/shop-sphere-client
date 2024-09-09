@@ -115,27 +115,24 @@ const MyProfile = () => {
                       <p className="text-gray-600 dark:text-white mt-2">
                         Placed on: {new Date(order.date).toLocaleDateString()}
                       </p>
-                      <div className="mt-4 space-y-4 flex max-md:flex-col justify-between items-center">
+                      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {order?.order?.map((item) => (
                           <div
                             key={item._id}
-                            className="flex items-center space-x-4"
+                            className="border p-4 rounded-lg text-center hover:shadow-lg transition-shadow duration-300"
                           >
                             <Image
                               src={item?.image}
                               alt={item.productName}
                               width={50}
                               height={50}
-                              className="object-cover rounded-lg border"
+                              className="object-cover mx-auto rounded-lg border"
                             />
                             <div>
                               <p className="text-gray-800 dark:text-white">
                                 {item.name}
                               </p>
-                              <p className="text-gray-800 dark:text-white">
-                                {item.category}
-                              </p>
-                              <p className="text-gray-600 dark:text-white">
+                              <p className="text-gray-600 dark:text-white mt-2">
                                 Quantity: {item.quantity}
                               </p>
                             </div>

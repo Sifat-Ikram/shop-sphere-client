@@ -72,6 +72,8 @@ const SignUp = () => {
             email: email,
             photoUrl: resImage.data.data.display_url,
           };
+          console.log(userInfo);
+          
           axiosPublic.post("/user", userInfo).then((res) => {
             if (res.data.insertedId) {
               alert("You signed up successfully!");
@@ -102,7 +104,7 @@ const SignUp = () => {
             height={700}
             width={700}
             priority
-            style={{ width: "auto", height: "auto" }}
+            sizes={{ width: "auto", height: "auto" }}
           />
         </div>
         <div className="flex-col hero-content lg:w-1/2 shadow-2xl p-8">

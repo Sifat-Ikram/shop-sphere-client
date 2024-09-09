@@ -182,7 +182,7 @@ const Shop = () => {
         .post("/bkash-checkout", {
           amount:
             discountedAmount !== 0 ? discountedAmount : totalCostCalculation(),
-          callbackURL: "http://localhost:4321/bkash-checkout",
+          callbackURL: "https://shop-sphere-server-ten.vercel.app/bkash-checkout",
           orderID: "12345",
           reference: user.email,
         })
@@ -228,7 +228,7 @@ const Shop = () => {
             </div>
           </div>
         </div> */}
-          <h1 className="text-5xl font-extrabold">My Cart</h1>
+          <h1 className="text-5xl font-extrabold mb-5 dark:text-white">My Cart</h1>
           <div className="border-t-2 border-solid py-8 mt-1">
             {selectedItem.length ? (
               selectedItem.map((productItem) => (

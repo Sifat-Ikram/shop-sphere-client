@@ -73,7 +73,7 @@ const User = () => {
   };
 
   return (
-    <div className="lg:px-20 mt-20">
+    <div className="lg:px-20 mt-20 min-h-screen">
       <h1 className="uppercase text-4xl font-bold text-[#624108] dark:text-white text-center">
         Users
       </h1>

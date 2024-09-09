@@ -41,6 +41,9 @@ const AdminOrders = () => {
     return <span className="loading loading-spinner loading-lg"></span>;
   }
 
+  console.log(orders);
+  
+
   const handleDeleteOrder = (orderedItem) => {
     Swal.fire({
       title: "Are you sure you want to cancel this order?",
