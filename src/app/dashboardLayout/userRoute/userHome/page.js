@@ -51,7 +51,7 @@ const UserHome = () => {
           !
         </h1>
         <p className="mt-2 text-xl">
-          It's great to have you here. Let's see what's new!
+          It&apos;s great to have you here. Let&apos;s see what&apos;s new!
         </p>
       </div>
 

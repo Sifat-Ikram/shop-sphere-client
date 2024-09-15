@@ -50,7 +50,7 @@ const Shop = () => {
       initialAmount[item.name] = 1;
     });
     setAmounts(initialAmount);
-    setDiscountedAmount(totalCostCalculation());
+    // setDiscountedAmount(totalCostCalculation());
   }, [cart]);
 
   //delete item handle
@@ -125,6 +125,7 @@ const Shop = () => {
       });
     }
     setDiscountedAmount(newDiscountedPrice);
+    setDiscountedAmount(totalCostCalculation())
   };
 
   const handleFinalOrder = () => {
@@ -182,7 +183,7 @@ const Shop = () => {
         .post("/bkash-checkout", {
           amount:
             discountedAmount !== 0 ? discountedAmount : totalCostCalculation(),
-          callbackURL: "https://shop-sphere-server-ten.vercel.app/bkash-checkout",
+          callbackURL: "http://localhost:4321/bkash-checkout",
           orderID: "12345",
           reference: user.email,
         })
@@ -278,7 +279,7 @@ const Shop = () => {
               ))
             ) : (
               <div className="flex flex-col justify-center items-center gap-20 my-32">
-                <h1 className="text-5xl text-center">Your cart is empty</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-center dark:text-white">Your cart is empty</h1>
                 <Link href={"/allProducts"}>
                   <button className="bg-[#624108] hover:bg-[#624108] text-white lg:rounded-xl rounded-md lg:px-20 md:px-14 sm:px-8 px-5 lg:py-4 sm:py-3 py-2">
                     Shop now

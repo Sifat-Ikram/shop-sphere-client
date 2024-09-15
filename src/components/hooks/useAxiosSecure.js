@@ -4,7 +4,7 @@ import { AuthContext } from "../provider/AuthProvider";
 import { useRouter } from "next/navigation";
 
 const axiosSecure = axios.create({
-  baseURL: "https://shop-sphere-server-ten.vercel.app",
+  baseURL: "http://localhost:4321",
 });
 
 const useAxiosSecure = () => {

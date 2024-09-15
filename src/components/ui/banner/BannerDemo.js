@@ -14,11 +14,13 @@ const BannerDemo = ({ title, text, img, background }) => {
         <p className="text-[8px] sm:text-xs md:text-2xl mb-4 md:mb-6 dark:text-white">
           {text}
         </p>
-        <Link href={"/allProducts"}>
-          <button className="px-3 py-2 md:px-8 md:py-3 rounded-md bg-[#725523] text-white text-xs md:text-lg font-medium md:font-semibold">Shop Now</button>
+        <Link href="/allProducts">
+          <button className="px-3 py-2 md:px-8 md:py-3 rounded-md bg-[#725523] dark:bg-white dark:text-black dark:border-2 border-solid dark:border-white text-white text-xs md:text-lg font-medium md:font-semibold">
+            Shop Now
+          </button>
         </Link>
       </div>
-      <div className="w-1/2 flex-1 justify-center">
+      <div className="w-1/2 relative h-[300px] md:h-[400px]">
         <Image
           src={img}
           alt="banner"
@@ -27,7 +29,7 @@ const BannerDemo = ({ title, text, img, background }) => {
           className="rounded-lg w-full md:h-[400px] object-cover"
           priority
           quality={100}
-          sizes="auto"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
         />
       </div>
     </div>
