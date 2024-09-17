@@ -20,7 +20,7 @@ const BannerDemo = ({ title, text, img, background }) => {
           </button>
         </Link>
       </div>
-      <div className="w-1/2 relative h-[300px] md:h-[400px]">
+      <div className="flex-1">
         <Image
           src={img}
           alt="banner"

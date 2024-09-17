@@ -96,7 +96,7 @@ const SignUp = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto py-20 flex items-center max-lg:flex-col">
+      <div className="container md:w-5/6 justify-between mx-auto py-20 flex items-center max-lg:flex-col">
         <div>
           <Image
             src={sign}
@@ -105,7 +105,7 @@ const SignUp = () => {
             width={700}
             priority
             sizes={{ width: "auto", height: "auto" }}
-            className="w-full h-[600px]"
+            className="w-full h-[500px]"
           />
         </div>
         <div className="flex-col hero-content lg:w-1/2 shadow-2xl p-8">
