@@ -1,11 +1,8 @@
 "use client";
 import useCart from "@/components/hooks/useCart";
 import { AuthContext } from "@/components/provider/AuthProvider";
-import Image from "next/image";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import { FaExchangeAlt, FaShoppingCart } from "react-icons/fa";
-import { GoInbox } from "react-icons/go";
 import { AiOutlineMinusSquare, AiOutlinePlusSquare } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import useAxiosPublic from "@/components/hooks/useAxiosPublic";
@@ -27,21 +24,6 @@ const Shop = () => {
 
   const selectedItem = cart.filter(
     (cartItem) => cartItem.email === user?.email
-  );
-
-  const navButton = (
-    <>
-      <Link href={"/register"}>
-        <button className="btn btn-outline text-[#624108] hover:bg-[#624108] hover:text-white px-5 lg:px-20 md:px-14 sm:px-8">
-          Sign up
-        </button>
-      </Link>
-      <Link href={"/logIn"}>
-        <button className="btn btn-outline text-[#624108] hover:bg-[#624108] hover:text-white px-5 lg:px-20 md:px-14 sm:px-8">
-          Sign in
-        </button>
-      </Link>
-    </>
   );
 
   useEffect(() => {
@@ -125,7 +107,7 @@ const Shop = () => {
       });
     }
     setDiscountedAmount(newDiscountedPrice);
-    setDiscountedAmount(totalCostCalculation())
+    setDiscountedAmount(totalCostCalculation());
   };
 
   const handleFinalOrder = () => {
@@ -183,7 +165,8 @@ const Shop = () => {
         .post("/bkash-checkout", {
           amount:
             discountedAmount !== 0 ? discountedAmount : totalCostCalculation(),
-          callbackURL: "http://localhost:4321/bkash-checkout",
+          callbackURL:
+            "https://shop-sphere-server-ten.vercel.app/bkash-checkout",
           orderID: "12345",
           reference: user.email,
         })
@@ -205,31 +188,9 @@ const Shop = () => {
       <Navbar />
       <div className="md:flex justify-center gap-5 md:px-5 px-2 pt-20 pb-5">
         <div className="md:w-3/5 lg:py-20 sm:py-14 py-10">
-          {/* <div className="sm:flex justify-between items-center gap-8 mb-8">
-          <div className="md:w-3/5">
-            <h1 className="max-md:text-center max-md:text-lg">
-              Register now & get Free shipping
-            </h1>
-            <div className="flex justify-center items-center lg:my-8 md:my-7 sm:my-5 my-4 gap-4">
-              {navButton}
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center gap-5">
-              <FaShoppingCart className="text-[#624108] text-xl" />
-              <h1>Faster Delivery</h1>
-            </div>
-            <div className="flex items-center gap-5">
-              <FaExchangeAlt className="text-[#624108] text-xl" />
-              <h1>Easier returns and exchanges</h1>
-            </div>
-            <div className="flex items-center gap-5">
-              <GoInbox className="text-[#624108] text-xl" />
-              <h1>Quick order information and tracking</h1>
-            </div>
-          </div>
-        </div> */}
-          <h1 className="text-5xl font-extrabold mb-5 dark:text-white">My Cart</h1>
+          <h1 className="text-5xl font-extrabold mb-5 dark:text-white">
+            My Cart
+          </h1>
           <div className="border-t-2 border-solid py-8 mt-1">
             {selectedItem.length ? (
               selectedItem.map((productItem) => (
@@ -279,7 +240,9 @@ const Shop = () => {
               ))
             ) : (
               <div className="flex flex-col justify-center items-center gap-20 my-32">
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-center dark:text-white">Your cart is empty</h1>
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-center dark:text-white">
+                  Your cart is empty
+                </h1>
                 <Link href={"/allProducts"}>
                   <button className="bg-[#624108] hover:bg-[#624108] text-white lg:rounded-xl rounded-md lg:px-20 md:px-14 sm:px-8 px-5 lg:py-4 sm:py-3 py-2">
                     Shop now

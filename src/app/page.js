@@ -3,6 +3,7 @@ import Navbar from "@/components/shared/Navbar";
 import Banner from "@/components/ui/banner/Banner";
 import BrandStory from "@/components/ui/brandStory/BrandStory";
 import Categories from "@/components/ui/categories/Categories";
+import FreeShipping from "@/components/ui/freeShipping/FreeShipping";
 import HeroSection from "@/components/ui/heroSection/HeroSection";
 import NewArrivals from "@/components/ui/newArrival/NewArrivals";
 import ReviewPage from "@/components/ui/review/ReviewPage";
@@ -16,6 +17,7 @@ export default function Home() {
       <main className="pt-20">
         <Banner />
         <Categories />
+        <FreeShipping />
         <TrendingItems />
         <NewArrivals />
         <HeroSection />

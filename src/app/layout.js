@@ -1,6 +1,7 @@
 import DarkModeButton from "@/components/ui/darkModeButton/DarkModeButton";
 import "./globals.css";
 import ClientProvider from "@/components/clientProvider/ClientProvider";
+import CustomCursor from "@/components/ui/customCursor/CustomCursor";
 
 export const metadata = {
   title: "Shop Sphere",
@@ -11,7 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="dark:bg-dark">
-        <ClientProvider>{children}</ClientProvider>
+        <ClientProvider>
+          <CustomCursor />
+          {children}
+          </ClientProvider>
       </body>
     </html>
   );

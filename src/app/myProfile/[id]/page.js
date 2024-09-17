@@ -84,10 +84,10 @@ const MyProfile = () => {
                 </p>
               </div>
               <Link
-                className="buttons flex justify-center items-center"
+                className="bg-[#624108] px-4 py-2 text-white rounded-md flex justify-center items-center dark:border-2 border-solid dark:bg-dark dark:text-white"
                 href={`/updateProfile/${currentUser._id}`}
               >
-                <MdEditNote className="text-3xl text-yellow-300" />
+                <MdEditNote className="text-3xl text-white dark:text-white hover:text-white" />
                 Edit Profile
               </Link>
             </div>
@@ -102,7 +102,7 @@ const MyProfile = () => {
                   {order.map((order) => (
                     <li
                       key={order.orderId}
-                      className="border p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                      className="border p-6 cursor-pointer rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
                     >
                       <div className="flex justify-between">
                         <span className="text-[#624108] dark:text-white font-medium">
@@ -159,7 +159,7 @@ const MyProfile = () => {
                   {cart?.map((item) => (
                     <li
                       key={item?._id}
-                      className="border p-4 rounded-lg text-center hover:shadow-lg transition-shadow duration-300"
+                      className="border cursor-pointer p-4 rounded-lg text-center hover:shadow-lg transition-shadow duration-300"
                     >
                       <Image
                         src={item?.image || "/placeholder.png"}

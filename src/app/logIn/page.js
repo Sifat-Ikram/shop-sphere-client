@@ -39,7 +39,7 @@ const SignIn = () => {
   return (
     <div>
       <Navbar />
-      <div className="container mx-auto pt-20 flex items-center max-lg:flex-col">
+      <div className="container mx-auto py-20 flex items-center max-lg:flex-col">
         <div>
           <Image
             src={sign}

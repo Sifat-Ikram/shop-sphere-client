@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import sign from "../../assets/sign/sign.png";
+import sign from "../../assets/sign/cart-5504_512.gif";
 import { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "@/components/provider/AuthProvider";
@@ -101,10 +101,11 @@ const SignUp = () => {
           <Image
             src={sign}
             alt="register"
-            height={700}
+            height={100}
             width={700}
             priority
             sizes={{ width: "auto", height: "auto" }}
+            className="w-full h-[600px]"
           />
         </div>
         <div className="flex-col hero-content lg:w-1/2 shadow-2xl p-8">
