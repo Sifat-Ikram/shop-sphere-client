@@ -8,10 +8,10 @@ const BannerDemo = ({ title, text, img, background }) => {
       style={{ background: background }}
     >
       <div className="w-1/2 flex flex-col justify-center items-center text-center px-1 md:px-16 py-6 md:py-10">
-        <h1 className="text-sm md:text-4xl font-bold mb-2 md:mb-4 dark:text-white">
+        <h1 className="text-sm sm:text-xl md:text-4xl font-bold mb-2 md:mb-4 dark:text-white">
           {title}
         </h1>
-        <p className="text-[8px] sm:text-xs md:text-2xl mb-4 md:mb-6 dark:text-white">
+        <p className="text-[10px] sm:text-base md:text-2xl mb-4 md:mb-6 dark:text-white">
           {text}
         </p>
         <Link href="/allProducts">
