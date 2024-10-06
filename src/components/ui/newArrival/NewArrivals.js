@@ -4,9 +4,7 @@ import Image from "next/image";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation } from "swiper/modules";
-import "@smastrom/react-rating/style.css";
-import { Rating } from "@smastrom/react-rating";
+import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useProduct from "@/components/hooks/useProduct";
 import Link from "next/link";
@@ -33,6 +31,10 @@ const NewArrivals = () => {
         <div>
           <Swiper
             spaceBetween={0}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
             slidesPerView={1}
             breakpoints={{
               640: {
@@ -49,7 +51,7 @@ const NewArrivals = () => {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             }}
-            modules={[Navigation]}
+            modules={[Navigation, Autoplay]}
             className="mySwiper"
           >
             {selectedProduct.map((product) => (

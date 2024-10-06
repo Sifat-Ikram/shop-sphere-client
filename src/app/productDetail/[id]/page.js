@@ -111,7 +111,7 @@ const ProductDetail = () => {
         brand: item.brand,
         type: item.type,
         details: item.details,
-        status: "pending"
+        status: "pending",
       };
 
       axiosPublic.post("/cart", cartItem).then((res) => {
@@ -191,16 +191,16 @@ const ProductDetail = () => {
   return (
     <div>
       <Navbar />
-      <div className="max-w-6xl mx-auto px-6 pt-32">
+      <div className="w-11/12 mx-auto px-1 md:px-4 pt-32">
         <div className="flex max-md:flex-col justify-between gap-10 mb-6 max-sm:w-11/12 mx-auto">
           {/* Image Gallery */}
-          <div>
+          <div className="relative group">
             <Image
               src={selectedProduct.image}
               alt={selectedProduct.name}
               height={600}
               width={600}
-              className="rounded-lg w-full mb-4"
+              className="rounded-lg transition-transform duration-300 group-hover:scale-125"
             />
           </div>
           {/* Selected Product Information */}
@@ -259,7 +259,7 @@ const ProductDetail = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 space-x-2 space-y-2 mt-2">
                 <button
                   onClick={handleFacebookShare}
-                  className="flex items-center bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition duration-300"
+                  className="flex items-center bg-blue-600 text-white px-3 rounded hover:bg-blue-700 transition duration-300"
                 >
                   <FaFacebook className="mr-2" /> Share on Facebook
                 </button>
@@ -325,77 +325,84 @@ const ProductDetail = () => {
         </div>
 
         {/* User Reviews */}
-        <div className="mt-10">
-          <h2 className="text-3xl font-bold mb-6 text-[#624108] dark:text-white">
+        <div className="mt-10 bg-[#FAF9F6] dark:bg-[#1F2937] rounded-lg p-8">
+          <h2 className="text-3xl font-bold mb-6 text-[#624108] dark:text-white text-center">
             Reviews
           </h2>
-          <div className="space-y-6">
+          <div className="space-y-8">
             {selectedReview.length > 0 ? (
               selectedReview.map((review, index) => (
-                <div key={index} className="p-6">
+                <div
+                  key={index}
+                  className="p-4 border-b border-gray-300 dark:border-gray-600"
+                >
                   <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-semibold dark:text-white text-[#624108]">
+                    <div className="">
+                      <h3 className="text-xl font-medium dark:text-white text-[#624108]">
                         {review.username}
                       </h3>
-                      <p className="text-gray-600 text-sm dark:text-white">
+                      <p className="text-gray-500 text-sm dark:text-gray-400">
                         {new Date(review.date).toLocaleDateString()}
                       </p>
                     </div>
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center space-x-1">
                       {[...Array(5)].map((_, i) => (
                         <FaStar
                           key={i}
-                          color={i < review.rating ? "gold" : "gray"}
+                          color={i < review.rating ? "#FBBF24" : "#E5E7EB"}
                           className="text-sm"
                         />
                       ))}
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4 dark:text-white">
+                  <p className="text-gray-800 mb-4 dark:text-gray-200 leading-relaxed">
                     {review.text}
                   </p>
-                  <div className="flex mb-5 items-center gap-8">
+                  <div className="flex mb-5 items-center gap-6">
                     <button
                       onClick={() => handleLike(review._id)}
-                      className="flex items-center text-gray-600 dark:text-white hover:text-[#624108] transition-colors duration-300"
+                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-[#624108] dark:hover:text-[#FBBF24] transition-colors duration-200"
                     >
                       <FaThumbsUp className="mr-1" /> {review.likes || 0}
                     </button>
                     <button
                       onClick={() => handleDislike(review._id)}
-                      className="flex items-center text-gray-600 dark:text-white hover:text-red-500 transition-colors duration-300"
+                      className="flex items-center text-gray-700 dark:text-gray-300 hover:text-red-500 transition-colors duration-200"
                     >
                       <FaThumbsDown className="mr-1" /> {review.dislikes || 0}
                     </button>
                   </div>
                   <div className="ml-3 mb-4">
-                    <h4 className="text-lg font-semibold text-[#624108] dark:text-white">
+                    <h4 className="text-base font-semibold text-[#624108] dark:text-white">
                       Replies:
                     </h4>
                     <div className="ml-5 space-y-2">
                       {review.replies && review.replies.length > 0 && (
-                        <div className="w-11/12 mx-auto">
+                        <div className="w-11/12 mx-auto bg-gray-100 dark:bg-[#374151] p-4 rounded-md">
                           {review.replies.map((reply) => (
                             <div
                               key={reply.replyText}
-                              className="reply mt-4 dark:text-white"
+                              className="reply mt-4 text-gray-700 dark:text-gray-300"
                             >
-                              <p>{reply.replyUser || "Anonymous"}</p>
+                              <div className="flex justify-between items-center">
+                                <p className="font-medium">
+                                  {reply.replyUser || "Anonymous"}
+                                </p>
+                                <small className="text-gray-500 dark:text-gray-400">
+                                  {new Date(reply.createdAt).toLocaleString()}
+                                </small>
+                              </div>
                               <p>{reply.replyText}</p>
-                              <small>
-                                {new Date(reply.createdAt).toLocaleString()}
-                              </small>
                             </div>
                           ))}
                         </div>
                       )}
                     </div>
                   </div>
-                  <div className="flex items-center space-x-6">
-                    <details className="flex items-center text-gray-600 group">
-                      <summary className="cursor-pointer dark:text-white flex items-center space-x-1">
-                        <span className="font-semibold">Reply</span>
+                  <div className="flex items-center space-x-6 mt-4">
+                    <details className="w-full text-gray-600 dark:text-gray-300 group">
+                      <summary className="cursor-pointer flex items-center justify-between font-semibold dark:text-white hover:text-[#624108] dark:hover:text-[#FBBF24] transition-colors duration-200">
+                        Reply
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="w-4 h-4 transition-transform group-open:rotate-180"
@@ -411,26 +418,28 @@ const ProductDetail = () => {
                           />
                         </svg>
                       </summary>
-                      <div className="p-4 mt-2 flex max-sm:flex-col items-center max-sm:gap-2">
-                        <input
-                          type="text"
-                          onChange={(e) => setReplyText(e.target.value)}
-                          className="w-full p-2 border rounded-md border-gray-300 dark:bg-white"
-                          placeholder="Write a reply..."
-                        />
-                        <button
-                          onClick={() => handleReplyText(review._id)}
-                          className="bg-[#725523] hover:bg-[#624108] dark:bg-dark dark:border-2 border-white border-solid p-2 text-white rounded-md w-40 transition duration-300"
-                        >
-                          Submit Reply
-                        </button>
+                      <div className="p-4 mt-2 bg-gray-100 dark:bg-[#293245] rounded-md">
+                        <div className="flex items-center max-sm:flex-col gap-2">
+                          <input
+                            type="text"
+                            onChange={(e) => setReplyText(e.target.value)}
+                            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-[#1F2937] text-gray-800 dark:text-gray-200"
+                            placeholder="Write a reply..."
+                          />
+                          <button
+                            onClick={() => handleReplyText(review._id)}
+                            className="bg-[#725523] hover:bg-[#624108] dark:bg-dark p-2 text-white rounded-md w-40 transition duration-200"
+                          >
+                            Submit Reply
+                          </button>
+                        </div>
                       </div>
                     </details>
                   </div>
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-600 dark:text-white">
+              <p className="text-center text-gray-600 dark:text-gray-400">
                 No reviews yet!
               </p>
             )}
@@ -438,7 +447,7 @@ const ProductDetail = () => {
         </div>
 
         {/* releted product */}
-        <div className="my-20">
+        <div className="my-16">
           <h1 className="text-4xl font-bold dark:text-white mb-10 text-center text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#8d6b31] to-[#624108]">
             Products You May Also Like
           </h1>

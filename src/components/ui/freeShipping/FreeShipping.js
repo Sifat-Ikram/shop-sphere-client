@@ -1,17 +1,16 @@
 import Link from "next/link";
-import React from "react";
 import { FaExchangeAlt, FaShoppingCart } from "react-icons/fa";
 import { GoInbox } from "react-icons/go";
 
 const FreeShipping = () => {
   const navButton = (
     <>
-      <Link href={"/register"}>
+      <Link href="/register">
         <button className="btn btn-outline dark:border-white text-[#624108] dark:text-white hover:bg-[#624108] dark:hover:bg-dark hover:text-white transition-colors duration-300 px-5 lg:px-20 md:px-14 sm:px-8 rounded-full shadow-md hover:shadow-lg">
           Sign up
         </button>
       </Link>
-      <Link href={"/logIn"}>
+      <Link href="/logIn">
         <button className="btn btn-outline dark:border-white text-[#624108] dark:text-white hover:bg-[#624108] dark:hover:bg-dark hover:text-white transition-colors duration-300 px-5 lg:px-20 md:px-14 sm:px-8 rounded-full shadow-md hover:shadow-lg">
           Sign in
         </button>

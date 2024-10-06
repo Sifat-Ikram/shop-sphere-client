@@ -6,6 +6,7 @@ import Categories from "@/components/ui/categories/Categories";
 import FreeShipping from "@/components/ui/freeShipping/FreeShipping";
 import HeroSection from "@/components/ui/heroSection/HeroSection";
 import NewArrivals from "@/components/ui/newArrival/NewArrivals";
+import PopUpModal from "@/components/ui/popUpModal/PopUpModal";
 import ReviewPage from "@/components/ui/review/ReviewPage";
 import SpecialOffers from "@/components/ui/specialOffer/SpecialOffers";
 import TrendingItems from "@/components/ui/trendingItems/TrendingItems";
@@ -18,6 +19,7 @@ export default function Home() {
         <Banner />
         <Categories />
         <FreeShipping />
+        <PopUpModal />
         <TrendingItems />
         <NewArrivals />
         <HeroSection />

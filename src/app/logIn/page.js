@@ -4,8 +4,7 @@ import Image from "next/image";
 import sign from "../../assets/sign/authentication.gif";
 import { useContext, useState } from "react";
 import { AuthContext } from "@/components/provider/AuthProvider";
-import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -14,6 +13,7 @@ const SignIn = () => {
   const { signIn } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const togglePasswordVisibility = () => {
@@ -22,6 +22,7 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -33,6 +34,8 @@ const SignIn = () => {
     } catch (err) {
       console.error(err.message);
       setError(err.message);
+    } finally {
+      setLoading(false); // Set loading state to false
     }
   };
 
@@ -90,8 +93,9 @@ const SignIn = () => {
                 <button
                   type="submit"
                   className="buttons dark:bg-dark dark:border-2 border-solid border-white dark:text-white w-full text-lg"
+                  disabled={loading}
                 >
-                  Sign in
+                  {loading ? "Signing in..." : "Sign in"}
                 </button>
               </div>
               {error && <div className="text-red-500 mt-2">{error}</div>}

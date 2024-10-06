@@ -35,6 +35,12 @@ const Shop = () => {
     // setDiscountedAmount(totalCostCalculation());
   }, [cart]);
 
+  useEffect(() => {
+    if (!user) {
+      router.push(`/signin?redirect=${router.asPath}`);
+    }
+  }, [user, router]);
+
   //delete item handle
   const handleDelete = (item) => {
     Swal.fire({

@@ -49,7 +49,7 @@ const TrendingItems = () => {
             {shuffledProducts.slice(0, 8).map((productItem) => (
               <div
                 key={productItem._id}
-                className="relative h-[400px] rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 animate-fadeIn"
+                className="relative h-[400px] cursor-pointer rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 animate-fadeIn"
               >
                 <Image
                   src={productItem.image}

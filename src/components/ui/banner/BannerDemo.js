@@ -7,8 +7,8 @@ const BannerDemo = ({ title, text, img, background }) => {
       className="w-11/12 mx-auto flex flex-row justify-center items-center gap-2 md:gap-20"
       style={{ background: background }}
     >
-      <div className="w-1/2 flex flex-col justify-center items-center text-center px-1 md:px-16 py-6 md:py-10">
-        <h1 className="text-sm sm:text-xl md:text-4xl font-bold mb-2 md:mb-4 dark:text-white">
+      <div className="w-1/2 flex flex-col justify-between items-start text-left px-1 md:px-16 py-6 md:py-10">
+        <h1 className="text-sm sm:text-xl md:text-4xl font-bold mb-2 md:mb-4 dark:text-white animate-fade-in-out">
           {title}
         </h1>
         <p className="text-[10px] sm:text-base md:text-2xl mb-4 md:mb-6 dark:text-white">

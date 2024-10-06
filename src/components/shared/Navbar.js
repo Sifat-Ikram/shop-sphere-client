@@ -69,7 +69,7 @@ const Navbar = () => {
       </li>
       <li>
         <Link
-          href={user ? "/shop" : "/logIn"}
+          href={"/shop"}
           className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black ${
             activeSegment === "shop" ? "bg-white text-[#624108]" : "text-white"
           }`}
@@ -128,7 +128,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-[#725523] px-4 sm:px-10 py-4 shadow z-10 mb-20 dark:bg-dark fixed">
+    <div className="navbar bg-[#725523] px-4 sm:px-10 py-4 shadow-lg z-50 mb-20 dark:bg-dark fixed">
       <div className="navbar-start">
         <div className="dropdown">
           <button tabIndex={0} className="btn btn-ghost lg:hidden text-white">
@@ -154,9 +154,9 @@ const Navbar = () => {
             {navList}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl sm:text-3xl text-white font-semibold">
+        <Link href={"/"} className="btn btn-ghost text-xl sm:text-3xl text-white font-semibold">
           ShopSphere
-        </a>
+        </Link>
       </div>
       <div className="navbar-end space-x-2">
         <ul className="menu menu-horizontal max-md:hidden px-1 space-x-2 sm:space-x-4">
@@ -225,7 +225,7 @@ const Navbar = () => {
                   <Link
                     href="/about"
                     className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black flex justify-center p-2 rounded-md ${
-                      activeSegment === "about"
+                      activeSegment === "/about"
                         ? "bg-white text-[#624108]"
                         : "text-white"
                     }`}
@@ -314,8 +314,8 @@ const Navbar = () => {
                 <li>
                   <Link
                     href="/about"
-                    className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black w-full flex justify-center p-2 rounded-md ${
-                      activeSegment === "about"
+                    className={`font-semibold hover:bg-[#8c5d2f] dark:hover:bg-white dark:text-white dark:hover:text-black flex justify-center p-2 rounded-md ${
+                      activeSegment === "/about"
                         ? "bg-white text-[#624108]"
                         : "text-white"
                     }`}
@@ -326,7 +326,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     href="/contact"
-                    className={`font-semibold hover:bg-[#624108] dark:hover:bg-white dark:text-white dark:hover:text-black w-full flex justify-center p-2 rounded-md ${
+                    className={`font-semibold hover:bg-[#8c5d2f] dark:hover:bg-white dark:text-white dark:hover:text-black flex justify-center p-2 rounded-md ${
                       activeSegment === "contact"
                         ? "bg-white text-[#624108]"
                         : "text-white"
